@@ -16,6 +16,35 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+### Technical Skills
+<table>
+    <tr>
+        <td>Languages</td>
+        <td>PHP, Typescript, JavaScript, C#, Swift, Python</td>
+    </tr>
+    <tr>
+        <td>Frameworks</td>
+        <td>Symfony, Laravel, React, React-Native, Vue.js, Express.js, Bootstrap</td>
+    </tr>
+  <tr>
+        <td>CMS</td>
+        <td>WordPress</td>
+    </tr>
+  <tr>
+        <td>E-Commere Systems</td>
+        <td>Shopware, WooCommerce, Magento</td>
+    </tr>
+    <tr>
+        <td>Tools</td>
+        <td>Git, Encore, Webpack, Babel, Docker</td>
+    </tr>
+    <tr>
+        <td>Database</td>
+        <td>MySQL/PostgreSQL, MongoDB</td>
+    </tr>
+</table>
+<br>
+
 <p>
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=brianvarskonst&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=brianvarskonst&exclude_repo=KNN-Image-Classification&show_icons=true&hide_border=true&layout=compact&langs_count=8" />
