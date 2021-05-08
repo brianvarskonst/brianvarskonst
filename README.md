@@ -20,7 +20,7 @@ Here are some ideas to get you started:
 <table>
     <tr>
         <td>Languages</td>
-        <td>PHP, Typescript, JavaScript, C#, Swift, Objective-C, Python</td>
+        <td>PHP, Typescript, JavaScript, C#, Swift, Objective-C, Python, Go</td>
     </tr>
     <tr>
         <td>Frameworks</td>
