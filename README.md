@@ -7,7 +7,7 @@ WordPress Developer at <img height="24px" src="https://avatars.githubusercontent
 <table>
     <tr>
         <td>Languages</td>
-        <td>PHP, Typescript, JavaScript, C#, Swift, Objective-C, Python, Go</td>
+        <td>PHP, Typescript (JavaScript === ~ {SnackWave}), C#, Swift, Objective-C, Python, Go</td>
     </tr>
     <tr>
         <td>Frameworks</td>
