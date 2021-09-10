@@ -36,9 +36,10 @@ WordPress Developer at <img height="24px" src="https://avatars.githubusercontent
 </table>
 <br>
 
-**Gists:**
+### Gists
 - [PHP 8 Attributes Compatible: Timestampable Trait](https://gist.github.com/brianvarskonst/07a07ad3ea45235e73eef6ce9fae7e84)
 
+### Stats
 <p>
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=brianvarskonst&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=brianvarskonst&show_icons=true&hide_border=true&layout=compact" />
