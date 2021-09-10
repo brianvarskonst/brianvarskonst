@@ -37,7 +37,8 @@ WordPress Developer at <img height="24px" src="https://avatars.githubusercontent
 <br>
 
 ### Gists
-- [Doctrine Timestampable Trait compatible with PHP 8 Attributes](https://gist.github.com/brianvarskonst/07a07ad3ea45235e73eef6ce9fae7e84)
+- [Doctrine TimestampableEntity Trait compatible with PHP 8 Attributes](https://gist.github.com/brianvarskonst/07a07ad3ea45235e73eef6ce9fae7e84)
+- [Doctrine SoftDeletableEntity Trait compatible with PHP 8 Attributes](https://gist.github.com/brianvarskonst/c192ccbbe7c25d2c8c460ae03c617bd0)
 
 ### Stats
 <p>
