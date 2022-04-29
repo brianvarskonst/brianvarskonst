@@ -7,7 +7,7 @@ WordPress Developer at <img height="24px" src="https://avatars.githubusercontent
 <table>
     <tr>
         <td>Languages</td>
-        <td>PHP, Typescript (<s>JavaScript</s>), C#, Swift, Objective-C, Python, Go</td>
+        <td>PHP, Typescript (<s>JavaScript</s>), C#, Swift, Objective-C, Python, Go, SASS</td>
     </tr>
     <tr>
         <td>Frameworks</td>
@@ -31,7 +31,7 @@ WordPress Developer at <img height="24px" src="https://avatars.githubusercontent
     </tr>
     <tr>
         <td>Software</td>
-        <td>PHPStorm, Adobe CC, Invision, Sketch, Note App, Milanote, Figma</td>
+        <td>PHPStorm, Adobe CC, Sketch, Miro, Invision, Milanote, Figma, Zeplin</td>
     </tr>
 </table>
 <br>
