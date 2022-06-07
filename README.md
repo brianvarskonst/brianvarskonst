@@ -1,7 +1,7 @@
 ### Hello, I'm Brian 👋
 WordPress Developer at <img height="24px" src="https://avatars.githubusercontent.com/u/571549?s=60&v=4" /> [Inpsyde GmbH](https://github.com/inpsyde/).
 
-### Technical Skills
+### Work with
 <table>
     <tr>
         <td>Languages</td>
