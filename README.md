@@ -1,6 +1,10 @@
 ### Hello, I'm Brian 👋
 WordPress Developer at <img height="24px" src="https://avatars.githubusercontent.com/u/571549?s=60&v=4" /> [Inpsyde GmbH](https://github.com/inpsyde/).
 
+#### Notice
+
+If you see commits with my name, but there looks like there is something wrong, the cause is I changed my primary email address, so there are many commit relationships to my profile are lost. For more information: https://github.community/t/loosing-all-contributions-by-changing-primary-email-address-of-github-account/179135
+
 ### Work with
 <table>
     <tr>
