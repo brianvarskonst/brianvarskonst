@@ -39,3 +39,6 @@ Developer at <img height="24px" src="https://avatars.githubusercontent.com/u/571
   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=brianvarskonst&show_icons=true&hide_border=true&&count_private=true&include_all_commits=true" />
   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=brianvarskonst&show_icons=true&hide_border=true&layout=compact" />
 </p>
+
+[![CodersRank](https://cr-ss-service.azurewebsites.net/api/ScreenShot?widget=summary&username=brianvarskonst)](https://profile.codersrank.io/user/xedinunknown)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=brianvarskonst)](https://github.com/anuraghazra/github-readme-stats)
