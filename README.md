@@ -32,7 +32,6 @@ Developer at <img height="24px" src="https://avatars.githubusercontent.com/u/571
         <td>PHPStorm, Adobe CC, Sketch, Miro, Invision, Milanote, Figma, Zeplin</td>
     </tr>
 </table>
-<br>
 
 ### Stats
 <p>
