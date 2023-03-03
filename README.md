@@ -1,5 +1,4 @@
 ### Hello, I'm Brian 👋
-Developer at <img height="24px" src="https://avatars.githubusercontent.com/u/1493446?s=200&v=4" /> [Denkwerk GmbH](https://github.com/denkwerk/).
 
 ### Work with
 <table>
