@@ -24,7 +24,7 @@
     </tr>
     <tr>
         <td>Tools</td>
-        <td>Git, Encore, Webpack, Babel, Docker</td>
+        <td>Git, Encore, Webpack, Babel, DDEV, Docker</td>
     </tr>
     <tr>
         <td>Software</td>
