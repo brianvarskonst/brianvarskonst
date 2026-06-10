@@ -1,60 +1,32 @@
 # Technical Lead & Fractional CTO
 
-### **Building maintainable systems and leading developers with clarity, structure and ownership.**
+I help businesses stabilize, modernize and scale software systems — with clear technical direction, pragmatic execution and calm leadership.
 
-**Strategic technical leadership for backend-heavy, business-critical software systems.**
-
-I work at the intersection of backend engineering, software architecture, DevOps, product delivery and people leadership.
-
-My focus is on building, modernizing and operating maintainable systems — especially in the PHP ecosystem with Symfony, Shopware and WordPress. I help turn complex requirements, legacy constraints and business goals into clear architecture, reliable infrastructure and predictable execution.
-
-I am strongest where business, product, engineering and people meet.
+I work best where software has become business-critical, technically unclear or difficult to scale.
 
 ---
 
 ## Profile
 
-I support companies, agencies and product teams with technical direction, system architecture, delivery planning, DevOps and hands-on engineering.
+I support companies, agencies and product teams with technical leadership, system architecture and hands-on implementation.
 
-My work usually spans the full technical lifecycle:
+My work is focused on:
 
-- understanding business goals, user needs and product requirements
-- translating requirements into technical concepts, roadmaps and implementation plans
-- designing scalable backend, platform and infrastructure architectures
-- building maintainable systems, APIs, plugins and integrations
-- setting up infrastructure, deployment workflows and automation
-- improving code quality, developer experience and operational reliability
-- leading developers through clarity, structure and direct communication
-- identifying technical and organizational risks before they become expensive
-
-The goal is always the same:
-
-> Build systems that are useful, stable, maintainable and realistically deliverable.
+- stabilizing and modernizing business-critical software systems
+- creating clear technical direction for teams and stakeholders
+- improving maintainability, delivery flow and operational reliability
+- reducing complexity in legacy systems, platforms and development processes
+- bridging the gap between business goals and engineering execution
 
 ---
 
-## Human Leadership & Communication
+## Leadership & Communication
 
-Strong engineering is not only a technical discipline. It is also a human one.
+Technical leadership is not only about architecture, code and tools.
 
-One of my strongest skills is communicating with people — especially developers. I care about creating clarity where there is ambiguity, structure where there is chaos and trust where teams need to move under pressure.
+I help teams create clarity where decisions are unclear, ownership where responsibility is fragmented and calm execution where pressure is high.
 
-I help developers do better work by giving them context, direction and realistic expectations instead of vague requirements or unnecessary noise.
-
-My leadership style is calm, direct and structured:
-
-- clear communication instead of assumptions
-- ownership instead of blame
-- technical sparring instead of micromanagement
-- honest feedback without unnecessary ego or politics
-- structure without bureaucracy
-- high standards without losing pragmatism
-- calm decision-making under pressure
-- trust, responsibility and accountability
-
-I believe developers do their best work when they understand the goal, the context, the constraints and the reason behind technical decisions.
-
-Good leadership means making decisions understandable, work actionable and people confident enough to take ownership.
+I value direct communication, honest feedback and pragmatic decisions over politics, ego or unnecessary complexity.
 
 ---
 
@@ -62,59 +34,46 @@ Good leadership means making decisions understandable, work actionable and peopl
 
 | Area | Focus |
 |---|---|
-| **Technical Leadership** | Fractional CTO work, technical strategy, architecture decisions, engineering direction, mentoring and team alignment |
-| **Backend Architecture** | Scalable PHP systems, Symfony applications, Shopware plugins, WordPress platforms, APIs and business-critical integrations |
-| **Technical Audits** | Codebase reviews, architecture assessments, infrastructure checks, risk analysis and modernization planning |
-| **Product & Delivery** | PM/PO work, requirements clarification, prioritization, roadmap planning and coordination between business and engineering |
-| **DevOps & Platform Engineering** | Docker-based environments, CI/CD pipelines, infrastructure automation, deployment workflows, Nginx setups and self-hosted platforms |
-| **Developer Experience** | Project structures, boilerplates, coding standards, documentation, tooling and maintainable engineering workflows |
-| **People & Communication** | Developer leadership, technical sparring, stakeholder communication, expectation management and decision clarity |
+| Technical Leadership | Technical direction, decision-making, team alignment and delivery structure |
+| Architecture & Modernization | Maintainable systems, scalable platforms and pragmatic legacy modernization |
+| Technical Audits | Codebase, infrastructure, process and risk assessment |
+| Product & Delivery | Translating business goals into technical execution |
+| DevOps & Platform Engineering | CI/CD, observability, deployment workflows and operational reliability |
+| Developer Experience | Tooling, standards and workflows that help teams move faster |
+| People & Communication | Clear communication, ownership and calm execution under pressure |
 
 ---
 
 ## Core Stack
 
-<p align="left">
-  <img src="https://skillicons.dev/icons?i=php,symfony,wordpress,ts,nodejs,docker,kubernetes,terraform,ansible,nginx,mysql,postgres,redis,git,github,linux&theme=dark" />
+<p>
+  <img src="https://skillicons.dev/icons?i=php,symfony,wordpress,ts,js,nodejs,docker,aws,githubactions,github,gitlab,git,linux,nginx,mysql,postgres,redis,elasticsearch,rabbitmq,sentry,cs,swift,python,go,sass&perline=13" alt="Core technologies" />
 </p>
 
-### Backend & Platforms
-
-```text
+**Backend & Platforms**  
 PHP · Symfony · Shopware · WordPress · WooCommerce · Node.js · TypeScript
-```
 
-### DevOps & Infrastructure
+**DevOps & Infrastructure**  
+Docker · DDEV · GitHub Actions · GitLab CI · Traefik · Nginx · Linux · Hetzner · AWS
 
-```text
-Docker · DDEV · Kubernetes · Ansible · Terraform · OpenTofu · Coolify · Hetzner · Linux · CI/CD
-```
+**Web, Hosting & Operations**  
+REST APIs · Deployment Workflows · Monitoring · Logging · Performance · Security · Maintenance
 
-### Web, Hosting & Operations
+**Databases & Services**  
+MySQL · PostgreSQL · Redis · Elasticsearch · RabbitMQ · Sentry
 
-```text
-Nginx · Reverse Proxies · SSL/TLS · DNS · Deployments · Server Operations · Self-Hosting
-```
-
-### Databases & Services
-
-```text
-MySQL · PostgreSQL · Redis · REST APIs · Queues · Caching · Search · Integrations
-```
-
-### Product & Leadership
-
-```text
-Technical Strategy · Product Ownership · Requirements · Roadmaps · Risk Management · Team Alignment · Mentoring
-```
+**Product & Leadership**  
+Technical Strategy · Architecture · Audits · Delivery Planning · Developer Experience · Team Alignment
 
 ---
 
 ## Selected Open Source
 
+A focused selection of public projects around PHP quality, Symfony and Shopware workflows, WordPress architecture and modular frontend behavior.
+
 | Project | Focus |
 |---|---|
-| [BvskPluginBoilerplate](https://github.com/brianvarskonst/BvskPluginBoilerplate) | Professional Shopware 6 plugin boilerplate for structured, maintainable and production-ready plugin development |
+| [BvskPluginBoilerplate](https://github.com/brianvarskonst/BvskPluginBoilerplate) | Professional Shopware 6 plugin boilerplate for structured and maintainable plugin development |
 | [symfony-bundle-template](https://github.com/brianvarskonst/symfony-bundle-template) | Reusable starting point for building Symfony bundles with clean conventions |
 | [wp-dependency-injection](https://github.com/brianvarskonst/wp-dependency-injection) | Symfony Dependency Injection Container integration for more structured and testable WordPress development |
 | [coding-standard](https://github.com/brianvarskonst/coding-standard) | CodeSniffer rules for maintaining consistent PHP code quality across projects and teams |
@@ -124,51 +83,22 @@ Technical Strategy · Product Ownership · Requirements · Roadmaps · Risk Mana
 
 ## Engineering Principles
 
-I care about systems that are understandable, extendable and stable over time.
+Good engineering should make systems easier to understand, operate and change over time.
 
-```text
-Clarity over complexity.
-Architecture over patchwork.
-Maintainability over short-term speed.
-Automation over repetition.
-Delivery over endless planning.
-Business value over technical vanity.
-Ownership over blame.
-Calm execution over reactive chaos.
-```
+I care about:
 
-Good engineering is not only about writing code. It is about making technical decisions that still work under real business pressure, changing requirements and long-term maintenance.
+- simple architecture before unnecessary abstraction
+- maintainability over short-term hacks
+- observability, reliability and clear ownership
+- pragmatic decisions based on business impact
+- documentation that helps teams move independently
 
-The best systems are not the ones that look impressive in isolation. They are the ones that teams can understand, operate, extend and trust.
+The best systems are not the ones that feel impressive in isolation. They are the ones that teams can understand, operate and improve without unnecessary friction.
 
 ---
 
 ## Personal Foundation
 
-My work is strongly influenced by stoic philosophy, discipline and long-term thinking.
+My work is shaped by discipline, clarity and responsibility.
 
-Stoicism shapes how I lead, communicate and make decisions:
-
-- focus on what can be controlled
-- stay calm under pressure
-- take responsibility
-- act with clarity
-- avoid unnecessary noise
-- separate ego from decision-making
-- value consistency over intensity
-
-Bodybuilding has a similar influence on how I approach engineering and leadership.
-
-Progress comes from structure, patience, repetition and doing the fundamentals well over a long period of time. The same mindset applies to software systems, teams and technical leadership.
-
-That mindset carries into my work:
-
-- build the foundation first
-- communicate clearly
-- stay consistent under pressure
-- respect the process without overcomplicating it
-- take ownership
-- finish what matters
-- improve through reflection and repetition
-
-I value people who are direct, reliable, disciplined and honest about reality.
+I value calm execution, honest feedback and long-term thinking — especially when systems, teams or decisions are under pressure.
