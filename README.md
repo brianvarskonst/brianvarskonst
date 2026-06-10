@@ -1,6 +1,6 @@
 # Technical Lead & Fractional CTO
 
-### **Brian Schäffner — building maintainable systems and leading developers with clarity, structure and ownership.**
+### **Building maintainable systems and leading developers with clarity, structure and ownership.**
 
 **Strategic technical leadership for backend-heavy, business-critical software systems.**
 
