@@ -31,15 +31,22 @@ I am currently building and maintaining open source packages around structured W
 
 The goal is to keep WordPress flexible while adding structure where it pays off: dependency injection, events, configuration, contracts, testable packages and reusable workflows.
 
-Selected repositories:
-
 | Project | Focus |
 |---|---|
-| [sympress/kernel](https://github.com/SymPress/kernel) | WordPress application kernel and shared Symfony-powered service container |
 | [sympress/workflows](https://github.com/SymPress/workflows) | Reusable GitHub Actions workflows for QA, releases, security checks and deployments |
+| [sympress/kernel](https://github.com/SymPress/kernel) | WordPress application kernel and shared Symfony-powered service container |
 | [sympress/coding-standards](https://github.com/SymPress/coding-standards) | PHP coding standards for scalable WordPress development |
-| [sympress/assets](https://github.com/SymPress/assets) | Composer package for managing scripts and styles in WordPress projects |
 | [sympress/wp-cli-console](https://github.com/SymPress/wp-cli-console) | Symfony Console wrappers for useful WP-CLI workflows |
+| [sympress/assets](https://github.com/SymPress/assets) | Composer package for managing scripts and styles in WordPress projects |
+
+---
+
+## Selected Engineering Work
+
+- Built reusable GitHub Actions workflows for QA, security checks, releases and deployment automation across SymPress packages.
+- Designed a Symfony-inspired WordPress kernel with dependency injection, package discovery and testable service boundaries.
+- Maintained coding standards and project conventions to keep PHP projects consistent, reviewable and easier to scale.
+- Created reusable templates and boilerplates for Symfony, Shopware and PHP projects to reduce setup friction and improve delivery quality.
 
 ---
 
