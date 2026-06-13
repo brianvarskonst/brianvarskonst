@@ -1,4 +1,4 @@
-# Technical Lead & Fractional CTO
+# Technical Leadership & Platform Engineering
 
 Technical leadership, backend architecture and platform engineering for business-critical software systems.
 
