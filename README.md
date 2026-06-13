@@ -1,104 +1,92 @@
 # Technical Lead & Fractional CTO
 
-I help businesses stabilize, modernize and scale software systems — with clear technical direction, pragmatic execution and calm leadership.
+Technical leadership, backend architecture and platform engineering for business-critical software systems.
 
-I work best where software has become business-critical, technically unclear or difficult to scale.
-
----
-
-## Profile
-
-I support companies, agencies and product teams with technical leadership, system architecture and hands-on implementation.
-
-My work is focused on:
-
-- stabilizing and modernizing business-critical software systems
-- creating clear technical direction for teams and stakeholders
-- improving maintainability, delivery flow and operational reliability
-- reducing complexity in legacy systems, platforms and development processes
-- bridging the gap between business goals and engineering execution
+I work at the intersection of architecture, delivery, DevOps and engineering leadership, with a strong focus on maintainable systems, clear technical direction and calm execution under pressure.
 
 ---
 
-## Leadership & Communication
+## Focus
 
-Technical leadership is not only about architecture, code and tools.
+I care about building software systems that teams can understand, operate and improve over time.
 
-I help teams create clarity where decisions are unclear, ownership where responsibility is fragmented and calm execution where pressure is high.
+My work usually centers around:
 
-I value direct communication, honest feedback and pragmatic decisions over politics, ego or unnecessary complexity.
+- backend architecture and modernization
+- platform and developer experience
+- CI/CD, automation and operational reliability
+- pragmatic legacy system improvement
+- technical decision-making and team alignment
+- translating product and business goals into engineering execution
 
 ---
 
-## How I Can Help
+## Current Work
 
-| Area | Focus |
+I am currently building and maintaining open source packages around structured WordPress development, Symfony-inspired architecture and reusable engineering workflows.
+
+### SymPress
+
+[SymPress](https://github.com/SymPress) brings Symfony components into WordPress without turning WordPress into something unrecognizable.
+
+The goal is to keep WordPress flexible while adding structure where it pays off: dependency injection, events, configuration, contracts, testable packages and reusable workflows.
+
+Selected repositories:
+
+| Project | Focus |
 |---|---|
-| Technical Leadership | Technical direction, decision-making, team alignment and delivery structure |
-| Architecture & Modernization | Maintainable systems, scalable platforms and pragmatic legacy modernization |
-| Technical Audits | Codebase, infrastructure, process and risk assessment |
-| Product & Delivery | Translating business goals into technical execution |
-| DevOps & Platform Engineering | CI/CD, observability, deployment workflows and operational reliability |
-| Developer Experience | Tooling, standards and workflows that help teams move faster |
-| People & Communication | Clear communication, ownership and calm execution under pressure |
+| [sympress/kernel](https://github.com/SymPress/kernel) | WordPress application kernel and shared Symfony-powered service container |
+| [sympress/workflows](https://github.com/SymPress/workflows) | Reusable GitHub Actions workflows for QA, releases, security checks and deployments |
+| [sympress/coding-standards](https://github.com/SymPress/coding-standards) | PHP coding standards for scalable WordPress development |
+| [sympress/assets](https://github.com/SymPress/assets) | Composer package for managing scripts and styles in WordPress projects |
+| [sympress/wp-cli-console](https://github.com/SymPress/wp-cli-console) | Symfony Console wrappers for useful WP-CLI workflows |
 
 ---
 
-## Core Stack
+## Technical Background
 
 <p>
   <img src="https://skillicons.dev/icons?i=php,symfony,wordpress,ts,js,nodejs,docker,aws,githubactions,github,gitlab,git,linux,nginx,mysql,postgres,redis,elasticsearch,rabbitmq,sentry,cs,swift,python,go,sass&perline=13" alt="Core technologies" />
 </p>
 
 **Backend & Platforms**  
-PHP · Symfony · Shopware · WordPress · WooCommerce · Node.js · TypeScript
+PHP · Symfony · WordPress · WooCommerce · Shopware · Node.js · TypeScript
 
 **DevOps & Infrastructure**  
-Docker · DDEV · GitHub Actions · GitLab CI · Traefik · Nginx · Linux · Hetzner · AWS
+Docker · DDEV · GitHub Actions · GitLab CI · Linux · Nginx · Traefik · AWS · Hetzner
 
-**Web, Hosting & Operations**  
-REST APIs · Deployment Workflows · Monitoring · Logging · Performance · Security · Maintenance
-
-**Databases & Services**  
+**Data & Services**  
 MySQL · PostgreSQL · Redis · Elasticsearch · RabbitMQ · Sentry
 
-**Product & Leadership**  
-Technical Strategy · Architecture · Audits · Delivery Planning · Developer Experience · Team Alignment
+**Engineering Leadership**  
+Technical strategy · architecture · audits · delivery planning · developer experience · team alignment
 
 ---
 
 ## Selected Open Source
 
-A focused selection of public projects around PHP quality, Symfony and Shopware workflows, WordPress architecture and modular frontend behavior.
-
 | Project | Focus |
 |---|---|
-| [BvskPluginBoilerplate](https://github.com/brianvarskonst/BvskPluginBoilerplate) | Professional Shopware 6 plugin boilerplate for structured and maintainable plugin development |
-| [symfony-bundle-template](https://github.com/brianvarskonst/symfony-bundle-template) | Reusable starting point for building Symfony bundles with clean conventions |
-| [wp-dependency-injection](https://github.com/brianvarskonst/wp-dependency-injection) | Symfony Dependency Injection Container integration for more structured and testable WordPress development |
-| [coding-standard](https://github.com/brianvarskonst/coding-standard) | CodeSniffer rules for maintaining consistent PHP code quality across projects and teams |
-| [es6-plugin-system](https://github.com/brianvarskonst/es6-plugin-system) | Lightweight JavaScript plugin architecture for modular and extendable frontend behavior |
+| [BvskPluginBoilerplate](https://github.com/brianvarskonst/BvskPluginBoilerplate) | Shopware 6 plugin boilerplate for structured plugin development |
+| [symfony-bundle-template](https://github.com/brianvarskonst/symfony-bundle-template) | Starting point for building Symfony bundles with clean conventions |
+| [coding-standard](https://github.com/brianvarskonst/coding-standard) | CodeSniffer rules for consistent PHP code quality |
+| [wp-dependency-injection](https://github.com/brianvarskonst/wp-dependency-injection) | Symfony Dependency Injection Container integration for WordPress |
+| [es6-plugin-system](https://github.com/brianvarskonst/es6-plugin-system) | Lightweight JavaScript plugin architecture for modular frontend behavior |
 
 ---
 
 ## Engineering Principles
 
-Good engineering should make systems easier to understand, operate and change over time.
+Good engineering should make systems easier to understand, operate and change.
 
-I care about:
+I value:
 
-- simple architecture before unnecessary abstraction
-- maintainability over short-term hacks
-- observability, reliability and clear ownership
-- pragmatic decisions based on business impact
+- clear architecture over unnecessary abstraction
+- maintainability over short-term cleverness
+- operational reliability and observability
+- explicit ownership and decision-making
 - documentation that helps teams move independently
+- pragmatic technical choices based on business impact
 
-The best systems are not the ones that feel impressive in isolation. They are the ones that teams can understand, operate and improve without unnecessary friction.
-
----
-
-## Personal Foundation
-
-My work is shaped by discipline, clarity and responsibility.
-
-I value calm execution, honest feedback and long-term thinking — especially when systems, teams or decisions are under pressure.
+The best systems are not impressive because they are complex.  
+They are valuable because teams can safely evolve them.
