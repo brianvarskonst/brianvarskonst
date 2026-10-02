@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="724" viewBox="0 0 1200 724" role="img" aria-labelledby="title description">
 <title id="title">A year of building — brianvarskonst</title>
-<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-09-28 to 2026-10-02: 2,309 contributions across 143 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality. The crescent moon and stars are fixed decorative details, not astronomical data.</desc>
+<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-09-28 to 2026-10-02: 2,309 contributions across 143 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality. The sun and stars are fixed decorative details, not astronomical data.</desc>
 <rect width="1200" height="724" rx="12" fill="#ffffff"/>
 <rect x="12" y="12" width="1176" height="700" rx="8" fill="none" stroke="#d6def1"/>
 <g stroke="#e9edf9" stroke-width="0.55" opacity="0.55">
@@ -71,11 +71,19 @@
 <circle cx="1025" cy="240" r="1.2" fill="#52617d" opacity="0.35"/>
 <circle cx="632" cy="138" r="0.75" fill="#52617d" opacity="0.20"/>
 <circle cx="946" cy="284" r="0.75" fill="#52617d" opacity="0.30"/>
-<g data-decoration="moon">
-<circle cx="1110" cy="174" r="48" fill="#3858E9" opacity="0.025"/>
-<circle cx="1110" cy="174" r="38" fill="#3858E9" opacity="0.04"/>
-<circle cx="1110" cy="174" r="30" fill="#3858E9" opacity="0.065"/>
-<path d="M1118 153A23 23 0 1 0 1129 189A19 19 0 0 1 1118 153Z" fill="#3858E9"/>
+<g data-decoration="sun">
+<circle cx="1110" cy="174" r="48" fill="#F2B544" opacity="0.025"/>
+<circle cx="1110" cy="174" r="38" fill="#F2B544" opacity="0.04"/>
+<circle cx="1110" cy="174" r="30" fill="#F2B544" opacity="0.065"/>
+<circle cx="1110" cy="174" r="21" fill="#F2B544" stroke="#D88A24" stroke-width="1.2"/>
+<path d="M1139,174L1145,174" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1130.51,194.51L1134.75,198.75" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1110,203L1110,209" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1089.49,194.51L1085.25,198.75" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1081,174L1075,174" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1089.49,153.49L1085.25,149.25" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1110,145L1110,139" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M1130.51,153.49L1134.75,149.25" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>
 </g>
 </g>
 <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">

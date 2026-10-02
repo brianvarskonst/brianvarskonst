@@ -266,12 +266,25 @@ function renderSky(theme, mode) {
     const opacity = mode === 'dark' ? 0.25 + (index % 4) * 0.1 : 0.2 + (index % 4) * 0.05;
     svg += `<circle cx="${x}" cy="${y}" r="${index % 5 === 0 ? 1.2 : 0.75}" fill="${theme.muted}" opacity="${opacity.toFixed(2)}"/>\n`;
   }
-  svg += '<g data-decoration="moon">\n';
+  const decoration = mode === 'dark' ? 'moon' : 'sun';
+  const skyAccent = mode === 'dark' ? theme.accent : '#F2B544';
+  svg += `<g data-decoration="${decoration}">\n`;
   for (const [radius, opacity] of [[48, 0.025], [38, 0.04], [30, 0.065]]) {
-    svg += `<circle cx="1110" cy="174" r="${radius}" fill="${theme.accent}" opacity="${opacity}"/>\n`;
+    svg += `<circle cx="1110" cy="174" r="${radius}" fill="${skyAccent}" opacity="${opacity}"/>\n`;
   }
-  // A fixed crescent silhouette, independent of the date and lunar phase.
-  svg += `<path d="M1118 153A23 23 0 1 0 1129 189A19 19 0 0 1 1118 153Z" fill="${mode === 'dark' ? '#e3eaff' : theme.accent}"/>\n</g>\n</g>\n`;
+  // Fixed silhouettes, selected by the profile theme rather than time or weather.
+  if (mode === 'dark') {
+    svg += '<path d="M1118 153A23 23 0 1 0 1129 189A19 19 0 0 1 1118 153Z" fill="#e3eaff"/>\n';
+  } else {
+    svg += `<circle cx="1110" cy="174" r="21" fill="${skyAccent}" stroke="#D88A24" stroke-width="1.2"/>\n`;
+    for (let ray = 0; ray < 8; ray++) {
+      const angle = ray * Math.PI / 4;
+      const inner = point(1110 + Math.cos(angle) * 29, 174 + Math.sin(angle) * 29);
+      const outer = point(1110 + Math.cos(angle) * 35, 174 + Math.sin(angle) * 35);
+      svg += `<path d="M${inner.join(',')}L${outer.join(',')}" fill="none" stroke="#D88A24" stroke-width="1.6" stroke-linecap="round"/>\n`;
+    }
+  }
+  svg += '</g>\n</g>\n';
   return svg;
 }
 
@@ -283,7 +296,7 @@ export function renderCity(data, mode) {
   const { total, active, peak } = contributionStatistics(data);
   const formattedTotal = total.toLocaleString('en-US');
   const description = `${data.username}'s visible GitHub contribution calendar, ${data.range.start} to ${data.range.end}: ${formattedTotal} contributions across ${active} active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub's daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality.`;
-  let svg = svgStart(HEIGHT, `A year of building — ${data.username}`, `${description} The crescent moon and stars are fixed decorative details, not astronomical data.`, theme);
+  let svg = svgStart(HEIGHT, `A year of building — ${data.username}`, `${description} The ${mode === 'dark' ? 'crescent moon' : 'sun'} and stars are fixed decorative details, not astronomical data.`, theme);
   svg += `<rect x="12" y="12" width="1176" height="${HEIGHT - 24}" rx="8" fill="none" stroke="${theme.line}"/>\n<g stroke="${theme.grid}" stroke-width="0.55" opacity="0.55">\n`;
   for (let x = 48; x <= 1152; x += 48) svg += `<path d="M${x} 128V668"/>\n`;
   for (let y = 128; y <= 668; y += 44) svg += `<path d="M48 ${y}H1152"/>\n`;

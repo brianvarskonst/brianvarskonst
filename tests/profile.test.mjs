@@ -187,7 +187,8 @@ test('console, sky, statistics and legend preserve actual calendar semantics', (
     assert.ok(statistics.includes(peak.date));
     assert.ok(statistics.includes(peak.count.toLocaleString('en-US')));
     assert.match(svg, /data-sky="true"/);
-    assert.match(svg, /data-decoration="moon"/);
+    assert.ok(svg.includes(`data-decoration="${mode === 'dark' ? 'moon' : 'sun'}"`));
+    assert.ok(!svg.includes(`data-decoration="${mode === 'dark' ? 'sun' : 'moon'}"`));
     assert.match(svg, /data-console="true"/);
     assert.match(svg.replace(/<[^>]+>/g, ''), /~\/contribution-city/);
     assert.match(svg, /node tools\/profile\/generate\.mjs/);

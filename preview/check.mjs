@@ -81,6 +81,7 @@ try {
         return {
           console: text('[data-console]'), statistics: text('[data-statistics]'),
           legend: text('[data-legend]'), moon: document.querySelectorAll('[data-decoration="moon"]').length,
+          sun: document.querySelectorAll('[data-decoration="sun"]').length,
           levels: [...document.querySelectorAll('[data-legend] [data-level]')].map(el => Number(el.getAttribute('data-level'))),
         };
       });
@@ -90,7 +91,8 @@ try {
       assert.ok(details.statistics.includes(`${statistics.active} active days · ${data.days.length} days shown`));
       assert.ok(details.statistics.includes(statistics.peak ? `Peak · ${statistics.peak.date} · ${statistics.peak.count.toLocaleString('en-US')}` : 'No active days in this calendar'));
       assert.deepEqual(details.levels, [0, 1, 2, 3, 4]);
-      assert.equal(details.moon, 1);
+      assert.equal(details.moon, file.includes('-dark') ? 1 : 0);
+      assert.equal(details.sun, file.includes('-light') ? 1 : 0);
       assert.ok(details.legend.includes(data.range.start) && details.legend.includes(data.range.end));
       await page.setViewportSize({ width: bounds.width, height: bounds.height });
       await page.screenshot({ path: resolve(root, `.local/city-${file.includes('-dark') ? 'dark' : 'light'}.png`), clip: { x: 0, y: 0, width: bounds.width, height: bounds.height } });
