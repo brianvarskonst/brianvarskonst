@@ -22,7 +22,7 @@ For an offline render from the saved dataset:
 node tools/profile/generate.mjs --from-file data/contributions.json
 ```
 
-The workflow refreshes the assets daily at 04:17 UTC and supports manual dispatch. GitHub schedules can be delayed. A failed fetch or invalid calendar fails the job and leaves the previous committed images intact. The assets display the actual calendar date range, including boundary weeks, rather than promising exactly 365 days. The workflow commits generated assets, public aggregate data and the marked contribution summary below the city; it never edits the existing description. That summary keeps the date range and counts readable on small screens.
+The workflow refreshes the assets daily at 04:30 in `Europe/Berlin` and supports manual dispatch. The native GitHub Actions timezone setting follows German summer and winter time automatically. GitHub schedules can be delayed. A failed fetch or invalid calendar fails the job and leaves the previous committed images intact. The assets display the actual calendar date range, including boundary weeks, rather than promising exactly 365 days. The workflow commits generated assets, public aggregate data and the marked contribution summary below the city; it never edits the existing description. That summary keeps the date range and counts readable on small screens.
 
 ## Local preview
 

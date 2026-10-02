@@ -2,7 +2,8 @@ name: Refresh contribution city
 
 on:
   schedule:
-    - cron: '17 4 * * *'
+    - cron: '30 4 * * *'
+      timezone: 'Europe/Berlin'
   workflow_dispatch:
   push:
     branches: [main]
