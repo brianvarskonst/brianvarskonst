@@ -1,0 +1,55 @@
+name: Refresh contribution city
+
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/profile/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - '.github/workflows/update-profile.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: contribution-city
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Check out profile
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - name: Test generator
+        run: node --test tests/*.test.mjs scripts/*.test.mjs
+      - name: Read visible contribution calendar and render both themes
+        run: |
+          node tools/profile/generate.mjs
+          node scripts/update-caption.mjs
+      - name: Verify generated assets
+        run: |
+          node tools/profile/generate.mjs --check
+          node scripts/update-caption.mjs --check
+      - name: Save changed contribution assets
+        shell: bash
+        run: |
+          git add assets/ data/ README.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore(profile): refresh contribution city'
+          git push

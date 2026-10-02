@@ -1,8 +1,31 @@
+<!-- profile-header:start -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/header-light.svg" />
+  <img src="assets/header-light.svg" alt="Brian Schäffner — Technical Leadership, Backend Architecture and Platform Engineering" width="1200" />
+</picture>
+<!-- profile-header:end -->
+
 # Technical Leadership & Platform Engineering
 
 Technical leadership, backend architecture and platform engineering for business-critical software systems.
 
 I work at the intersection of architecture, delivery, DevOps and engineering leadership, with a strong focus on maintainable systems, clear technical direction and calm execution under pressure.
+
+<!-- contribution-city:start -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/contribution-city-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="assets/contribution-city-light.svg" />
+  <img src="assets/contribution-city-light.svg" alt="An isometric city built from my visible GitHub contribution calendar. Each tile represents a day; building height reflects activity." width="1200" />
+</picture>
+
+<!-- contribution-summary:start -->
+**2,249 contributions** · **143 active days**<br />
+Visible calendar: 2025-09-28 — 2026-10-02.
+<!-- contribution-summary:end -->
+
+<sub>A view of my [GitHub contribution activity](https://github.com/brianvarskonst?tab=overview). Each tile is one day; building height reflects activity.</sub>
+<!-- contribution-city:end -->
 
 ---
 
@@ -52,9 +75,13 @@ The goal is to keep WordPress flexible while adding structure where it pays off:
 
 ## Technical Background
 
-<p>
-  <img src="https://skillicons.dev/icons?i=php,symfony,wordpress,ts,js,nodejs,docker,aws,githubactions,github,gitlab,git,linux,nginx,mysql,postgres,redis,elasticsearch,rabbitmq,sentry,cs,swift,python,go,sass&perline=13" alt="Core technologies" />
-</p>
+<!-- technology-icons:start -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=php%2Csymfony%2Cwordpress%2Cts%2Cjs%2Cnodejs%2Cdocker%2Caws%2Cgithubactions%2Cgithub%2Cgitlab%2Cgit%2Clinux%2Cnginx%2Cmysql%2Cpostgres%2Credis%2Celasticsearch%2Crabbitmq%2Csentry%2Ccs%2Cswift%2Cpython%2Cgo%2Csass&amp;perline=13&amp;theme=dark" />
+  <source media="(prefers-color-scheme: light)" srcset="https://skillicons.dev/icons?i=php%2Csymfony%2Cwordpress%2Cts%2Cjs%2Cnodejs%2Cdocker%2Caws%2Cgithubactions%2Cgithub%2Cgitlab%2Cgit%2Clinux%2Cnginx%2Cmysql%2Cpostgres%2Credis%2Celasticsearch%2Crabbitmq%2Csentry%2Ccs%2Cswift%2Cpython%2Cgo%2Csass&amp;perline=13&amp;theme=light" />
+  <img src="https://skillicons.dev/icons?i=php,symfony,wordpress,ts,js,nodejs,docker,aws,githubactions,github,gitlab,git,linux,nginx,mysql,postgres,redis,elasticsearch,rabbitmq,sentry,cs,swift,python,go,sass&amp;perline=13&amp;theme=light" alt="Core technologies" />
+</picture>
+<!-- technology-icons:end -->
 
 **Backend & Platforms**  
 PHP · Symfony · WordPress · WooCommerce · Shopware · Node.js · TypeScript

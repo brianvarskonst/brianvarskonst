@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="192" viewBox="0 0 1200 192" role="img" aria-labelledby="title description">
+<title id="title">Brian Schäffner</title>
+<desc id="description">Technical Leadership · Backend Architecture · Platform Engineering. An original three-layer architectural stack accompanies the name.</desc>
+<rect width="1200" height="192" rx="12" fill="#ffffff"/>
+<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+<rect x="48" y="47" width="4" height="96" rx="2" fill="#087f7c"/>
+<text x="70" y="94" fill="#202b36" font-size="56" font-weight="600" letter-spacing="-1.5">Brian Schäffner</text>
+<text x="72" y="135" fill="#576674" font-size="20">Technical Leadership · Backend Architecture · Platform Engineering</text>
+</g>
+<g stroke="#087f7c" stroke-width="1.5" stroke-linejoin="round">
+<path d="M1030 85L1118 113L1067 136L979 108Z" fill="#edf2f5"/><path d="M979 108V117L1067 145L1118 122V113M1067 136V145" fill="none" opacity="0.5"/>
+<path d="M1030 64L1118 92L1067 115L979 87Z" fill="#edf2f5"/><path d="M979 87V96L1067 124L1118 101V92M1067 115V124" fill="none" opacity="0.5"/>
+<path d="M1030 43L1118 71L1067 94L979 66Z" fill="#edf2f5"/><path d="M979 66V75L1067 103L1118 80V71M1067 94V103" fill="none" opacity="0.5"/>
+</g>
+</svg>

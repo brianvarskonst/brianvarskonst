@@ -1,0 +1,20 @@
+{
+  "name": "brianvarskonst-profile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "generate": "node tools/profile/generate.mjs && node scripts/update-caption.mjs",
+    "check": "node tools/profile/generate.mjs --check && node scripts/update-caption.mjs --check",
+    "test": "node --test tests/*.test.mjs scripts/*.test.mjs",
+    "preview": "node preview/server.mjs",
+    "test:browser": "node preview/check.mjs"
+  },
+  "devDependencies": {
+    "@primer/css": "22.3.2",
+    "playwright": "1.63.0"
+  }
+}
