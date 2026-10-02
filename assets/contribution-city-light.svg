@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="724" viewBox="0 0 1200 724" role="img" aria-labelledby="title description">
 <title id="title">A year of building — brianvarskonst</title>
-<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-09-28 to 2026-10-02: 2,303 contributions across 143 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality.</desc>
-<rect width="1200" height="700" rx="12" fill="#ffffff"/>
-<rect x="12" y="12" width="1176" height="676" rx="8" fill="none" stroke="#d6def1"/>
+<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-09-28 to 2026-10-02: 2,303 contributions across 143 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality. The crescent moon and stars are fixed decorative details, not astronomical data.</desc>
+<rect width="1200" height="724" rx="12" fill="#ffffff"/>
+<rect x="12" y="12" width="1176" height="700" rx="8" fill="none" stroke="#d6def1"/>
 <g stroke="#e9edf9" stroke-width="0.55" opacity="0.55">
 <path d="M48 128V668"/>
 <path d="M96 128V668"/>
@@ -42,11 +42,54 @@
 <path d="M48 612H1152"/>
 <path d="M48 656H1152"/>
 </g>
+<g data-sky="true" aria-hidden="true">
+<circle cx="480" cy="135" r="1.2" fill="#52617d" opacity="0.20"/>
+<circle cx="637" cy="208" r="0.75" fill="#52617d" opacity="0.25"/>
+<circle cx="794" cy="281" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="558" cy="252" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="872" cy="223" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="1029" cy="296" r="0.75" fill="#52617d" opacity="0.35"/>
+<circle cx="636" cy="194" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="793" cy="267" r="0.75" fill="#52617d" opacity="0.25"/>
+<circle cx="557" cy="238" r="0.75" fill="#52617d" opacity="0.35"/>
+<circle cx="1028" cy="282" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="635" cy="180" r="1.2" fill="#52617d" opacity="0.35"/>
+<circle cx="792" cy="253" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="556" cy="224" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="713" cy="297" r="0.75" fill="#52617d" opacity="0.35"/>
+<circle cx="1027" cy="268" r="0.75" fill="#52617d" opacity="0.25"/>
+<circle cx="634" cy="166" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="791" cy="239" r="0.75" fill="#52617d" opacity="0.35"/>
+<circle cx="555" cy="210" r="1.2" fill="#52617d" opacity="0.25"/>
+<circle cx="712" cy="283" r="0.75" fill="#52617d" opacity="0.30"/>
+<circle cx="1026" cy="254" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="633" cy="152" r="0.75" fill="#52617d" opacity="0.25"/>
+<circle cx="790" cy="225" r="1.2" fill="#52617d" opacity="0.30"/>
+<circle cx="947" cy="298" r="0.75" fill="#52617d" opacity="0.35"/>
+<circle cx="554" cy="196" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="711" cy="269" r="0.75" fill="#52617d" opacity="0.25"/>
+<circle cx="1025" cy="240" r="1.2" fill="#52617d" opacity="0.35"/>
+<circle cx="632" cy="138" r="0.75" fill="#52617d" opacity="0.20"/>
+<circle cx="946" cy="284" r="0.75" fill="#52617d" opacity="0.30"/>
+<g data-decoration="moon">
+<circle cx="1110" cy="174" r="48" fill="#3858E9" opacity="0.025"/>
+<circle cx="1110" cy="174" r="38" fill="#3858E9" opacity="0.04"/>
+<circle cx="1110" cy="174" r="30" fill="#3858E9" opacity="0.065"/>
+<path d="M1118 153A23 23 0 1 0 1129 189A19 19 0 0 1 1118 153Z" fill="#3858E9"/>
+</g>
+</g>
 <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
-<rect x="48" y="44" width="4" height="30" rx="2" fill="#3858E9"/>
-<text x="68" y="68" fill="#202a46" font-size="30" font-weight="600">A year of building</text>
-<text x="68" y="94" fill="#52617d" font-size="15">Visible contribution history · brianvarskonst</text>
-<path d="M48 113H1152" fill="none" stroke="#d6def1"/><path d="M48 113H192" fill="none" stroke="#3858E9" stroke-width="1.25"/>
+<g data-console="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">
+<text x="48" y="61" fill="#202a46" font-size="28" font-weight="600"><tspan fill="#3858E9">~/</tspan>contribution-city</text>
+<text x="1152" y="59" text-anchor="end" fill="#52617d" font-size="14">brianvarskonst</text>
+<path d="M48 80H1152" fill="none" stroke="#d6def1"/><path d="M48 80H250" fill="none" stroke="#3858E9" stroke-width="1.5"/>
+<text x="48" y="108" fill="#52617d" font-size="16"><tspan fill="#3858E9">$</tspan> node tools/profile/generate.mjs <tspan opacity="0.8"># one plot per day</tspan></text>
+</g>
+<g data-statistics="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" text-anchor="end" fill="#52617d" font-size="15">
+<text x="1020" y="151" font-size="18"><tspan fill="#3858E9" font-weight="600">2,303</tspan> contributions</text>
+<text x="1020" y="178">143 active days · 370 days shown</text>
+<text x="1020" y="205">Peak · 2026-06-13 · 187</text>
+</g>
 <g stroke-linejoin="round">
 <polygon points="168,378 184.6,381 171.4,392.3 154.8,389.3" fill="#edf1fa" stroke="#cdd7ee" stroke-width="0.55"/>
 <polygon points="154,390 170.6,393 157.4,404.3 140.8,401.3" fill="#edf1fa" stroke="#cdd7ee" stroke-width="0.55"/>
@@ -803,5 +846,15 @@
 <path d="M951.4 626.7v7" fill="none" stroke="#cdd7ee"/><text x="951.4" y="647.7" fill="#52617d" font-size="14" text-anchor="middle">Sep</text>
 <path d="M1023.4 639.9v7" fill="none" stroke="#cdd7ee"/><text x="1023.4" y="660.9" fill="#52617d" font-size="14" text-anchor="middle">Oct</text>
 <path d="M48 676H1152" stroke="#d6def1"/>
+<g data-legend="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" fill="#52617d" font-size="13">
+<text x="48" y="702">quiet</text>
+<rect data-level="0" x="108" y="690" width="14" height="14" rx="1" fill="#edf1fa" stroke="#cdd7ee" stroke-width="0.5"/>
+<rect data-level="1" x="129" y="690" width="14" height="14" rx="1" fill="#c5d0ff" stroke="#3858E9" stroke-width="0.5"/>
+<rect data-level="2" x="150" y="690" width="14" height="14" rx="1" fill="#a4b7ff" stroke="#3858E9" stroke-width="0.5"/>
+<rect data-level="3" x="171" y="690" width="14" height="14" rx="1" fill="#7290f8" stroke="#3858E9" stroke-width="0.5"/>
+<rect data-level="4" x="192" y="690" width="14" height="14" rx="1" fill="#3858E9" stroke="#3858E9" stroke-width="0.5"/>
+<text x="218" y="702">skyscraper</text>
+<text x="1152" y="702" text-anchor="end">2025-09-28 — 2026-10-02</text>
+</g>
 </g>
 </svg>

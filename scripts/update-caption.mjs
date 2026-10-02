@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { ROOT, validateContributionData } from '../tools/profile/generate.mjs';
+import { ROOT, validateContributionData, contributionStatistics } from '../tools/profile/generate.mjs';
 
 export function updateCaption(readme, data) {
   validateContributionData(data);
@@ -10,9 +10,9 @@ export function updateCaption(readme, data) {
   if (readme.split(start).length !== 2 || readme.split(end).length !== 2 || readme.indexOf(end) < readme.indexOf(start)) {
     throw new Error('README must contain exactly one ordered contribution summary block');
   }
-  const total = data.days.reduce((sum, day) => sum + day.count, 0).toLocaleString('en-US');
-  const active = data.days.filter(day => day.count > 0).length;
-  const content = `${start}\n**${total} contributions** · **${active} active days**<br />\nVisible calendar: ${data.range.start} — ${data.range.end}.\n${end}`;
+  const { total, active, peak } = contributionStatistics(data);
+  const peakSummary = peak ? `Peak: ${peak.date} · ${peak.count.toLocaleString('en-US')} contributions.` : 'No active days in this calendar.';
+  const content = `${start}\n**${total.toLocaleString('en-US')} contributions** · **${active} active days**<br />\nVisible calendar: ${data.range.start} — ${data.range.end}.<br />\n${peakSummary}\n${end}`;
   return readme.slice(0, readme.indexOf(start)) + content + readme.slice(readme.indexOf(end) + end.length);
 }
 

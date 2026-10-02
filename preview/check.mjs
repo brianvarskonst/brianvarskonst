@@ -4,10 +4,13 @@ import { execFileSync } from 'node:child_process';
 import { chromium } from 'playwright';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { contributionStatistics } from '../tools/profile/generate.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const baseline = execFileSync('git', ['show', 'e8110ab02ff4262ad1707078f6506039bf190178:README.md'], { cwd: root, encoding: 'utf8' });
 const readme = await readFile(resolve(root, 'README.md'), 'utf8');
+const data = JSON.parse(await readFile(resolve(root, 'data/contributions.json'), 'utf8'));
+const statistics = contributionStatistics(data);
 let narrative = readme;
 for (const block of ['profile-header', 'contribution-city']) {
   narrative = narrative.replace(new RegExp(`<!-- ${block}:start -->[\\s\\S]*?<!-- ${block}:end -->\\n\\n`), '');
@@ -73,6 +76,22 @@ try {
     assert.deepEqual(bounds.clipped, [], `${file}: geometry and labels must stay inside viewBox`);
     assert.equal(bounds.unsafe, 0);
     if (file.startsWith('contribution-city-')) {
+      const details = await page.evaluate(() => {
+        const text = selector => document.querySelector(selector)?.textContent.replace(/\s+/g, ' ').trim();
+        return {
+          console: text('[data-console]'), statistics: text('[data-statistics]'),
+          legend: text('[data-legend]'), moon: document.querySelectorAll('[data-decoration="moon"]').length,
+          levels: [...document.querySelectorAll('[data-legend] [data-level]')].map(el => Number(el.getAttribute('data-level'))),
+        };
+      });
+      assert.ok(details.console.includes('~/contribution-city'));
+      assert.ok(details.console.includes('$ node tools/profile/generate.mjs'));
+      assert.ok(details.statistics.includes(`${statistics.total.toLocaleString('en-US')} contributions`));
+      assert.ok(details.statistics.includes(`${statistics.active} active days · ${data.days.length} days shown`));
+      assert.ok(details.statistics.includes(statistics.peak ? `Peak · ${statistics.peak.date} · ${statistics.peak.count.toLocaleString('en-US')}` : 'No active days in this calendar'));
+      assert.deepEqual(details.levels, [0, 1, 2, 3, 4]);
+      assert.equal(details.moon, 1);
+      assert.ok(details.legend.includes(data.range.start) && details.legend.includes(data.range.end));
       await page.setViewportSize({ width: bounds.width, height: bounds.height });
       await page.screenshot({ path: resolve(root, `.local/city-${file.includes('-dark') ? 'dark' : 'light'}.png`), clip: { x: 0, y: 0, width: bounds.width, height: bounds.height } });
     }

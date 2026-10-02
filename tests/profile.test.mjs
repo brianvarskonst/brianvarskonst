@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import {
   USERNAME, contributionSource, parseContributionCalendar, validateContributionData,
-  fetchContributions, buildingHeight, cityGeometry, escapeXml, renderCity,
+  fetchContributions, buildingHeight, cityGeometry, escapeXml, renderCity, contributionStatistics,
   renderHeader, renderOutputs, writeOutputsAtomically, runCli, WIDTH, HEIGHT,
 } from '../tools/profile/generate.mjs';
 
@@ -128,6 +128,23 @@ test('height encodes counts monotonically within bounded drawing space', () => {
   }
 });
 
+test('statistics retain exact counts, active days and the earliest tied peak', () => {
+  const data = fixture(370, true);
+  data.days[3].count = 1234;
+  data.days[3].level = 4;
+  data.days[9].count = 7;
+  data.days[9].level = 2;
+  data.days[16].count = 1234;
+  data.days[16].level = 4;
+  const before = structuredClone(data);
+  assert.deepEqual(contributionStatistics(data), { total: 2475, active: 3, peak: data.days[3] });
+  assert.deepEqual(data, before);
+});
+
+test('statistics for an empty calendar report no peak day', () => {
+  assert.deepEqual(contributionStatistics(fixture(371, true)), { total: 0, active: 0, peak: null });
+});
+
 test('both themes contain real accessible records and are deterministic self-contained SVGs', () => {
   const data = fixture();
   for (const mode of ['dark', 'light']) {
@@ -135,7 +152,7 @@ test('both themes contain real accessible records and are deterministic self-con
     assert.equal(svg, renderCity(structuredClone(data), mode));
     assert.equal([...svg.matchAll(/data-date="/g)].length, 370);
     assert.match(svg, /A year of building/);
-    assert.match(svg, /Visible contribution history/);
+    assert.match(svg, /visible GitHub contribution calendar/);
     assert.match(svg, /anonymized private contributions/);
     assert.match(svg, /2025-09-28 to 2026-10-02/);
     assert.match(svg, /contributions.*active days/);
@@ -143,7 +160,7 @@ test('both themes contain real accessible records and are deterministic self-con
     assert.match(svg, /aria-labelledby="title description"/);
     assert.match(svg, /not productivity or quality/);
     assert.doesNotMatch(svg, /<script|<foreignObject|<animate|<image|(?:href|src)\s*=|@font-face|<!DOCTYPE|<!ENTITY/i);
-    assert.match(svg, /width="1200" height="700"/);
+    assert.ok(svg.includes(`width="${WIDTH}" height="${HEIGHT}"`));
     const header = renderHeader(mode);
     assert.equal(header, renderHeader(mode));
     assert.match(header, /Brian Schäffner/);
@@ -157,6 +174,35 @@ test('both themes contain real accessible records and are deterministic self-con
   assert.equal(escapeXml('<tag a="x">&\' '), '&lt;tag a=&quot;x&quot;&gt;&amp;&apos; ');
 });
 
+test('console, sky, statistics and legend preserve actual calendar semantics', () => {
+  const data = fixture();
+  const { total, active, peak } = contributionStatistics(data);
+  for (const mode of ['dark', 'light']) {
+    const svg = renderCity(data, mode);
+    const statistics = svg.match(/<g data-statistics="true"[^>]*>([\s\S]*?)<\/g>/)?.[1];
+    assert.ok(statistics, 'visible statistics group is present');
+    assert.ok(statistics.includes(total.toLocaleString('en-US')));
+    assert.ok(statistics.includes(`${active} active days`));
+    assert.ok(statistics.includes(`${data.days.length} days`));
+    assert.ok(statistics.includes(peak.date));
+    assert.ok(statistics.includes(peak.count.toLocaleString('en-US')));
+    assert.match(svg, /data-sky="true"/);
+    assert.match(svg, /data-decoration="moon"/);
+    assert.match(svg, /data-console="true"/);
+    assert.match(svg.replace(/<[^>]+>/g, ''), /~\/contribution-city/);
+    assert.match(svg, /node tools\/profile\/generate\.mjs/);
+    assert.match(svg, /one plot per day/);
+    const legend = svg.match(/<g data-legend="true"[^>]*>([\s\S]*?)<\/g>/)?.[1];
+    assert.ok(legend, 'visible activity legend is present');
+    assert.match(legend, /quiet/);
+    assert.match(legend, /skyscraper/);
+    assert.deepEqual([...legend.matchAll(/data-level="(\d)"/g)].map(match => Number(match[1])), [0, 1, 2, 3, 4]);
+    assert.doesNotMatch(svg, /last 365|render-city --last 365|moon phase|lunar phase|current moon/i);
+    const dates = [...svg.matchAll(/data-date="([^"]+)" data-count="(\d+)"/g)].map(([, date, count]) => ({ date, count: Number(count) })).toSorted((a, b) => a.date.localeCompare(b.date));
+    assert.deepEqual(dates, data.days.map(({ date, count }) => ({ date, count })));
+  }
+});
+
 test('zero-contribution calendars render flat plots without NaN or raised buildings', () => {
   const data = fixture(371, true);
   assert.ok(cityGeometry(data).every(building => building.height === 0));
@@ -167,6 +213,8 @@ test('zero-contribution calendars render flat plots without NaN or raised buildi
     assert.doesNotMatch(svg, /NaN|Infinity/);
     assert.equal([...svg.matchAll(/data-count="0"/g)].length, 371);
     assert.doesNotMatch(svg, /data-facade=|data-rooftop=/);
+    assert.match(svg, /No active days/);
+    assert.doesNotMatch(svg, /Peak ·/);
   }
 });
 

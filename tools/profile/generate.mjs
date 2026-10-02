@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const USERNAME = 'brianvarskonst';
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const WIDTH = 1200;
-export const HEIGHT = 700;
+export const HEIGHT = 724;
 export const PRIMARY_BLUE = '#3858E9';
 const DAY_MS = 86_400_000;
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -241,22 +241,56 @@ function verticalRail(a, b, theme, opacity) {
   return `<path d="M${a.join(',')}L${b.join(',')}" fill="none" stroke="${theme.accent}" stroke-width="2.8" opacity="0.12"/><path d="M${a.join(',')}L${b.join(',')}" fill="none" stroke="${theme.rail}" stroke-width="0.8" opacity="${opacity}"/>`;
 }
 
+export function contributionStatistics(data) {
+  validateContributionData(data);
+  let total = 0;
+  let active = 0;
+  let peak = null;
+  for (const day of data.days) {
+    total += day.count;
+    if (day.count > 0) active++;
+    // Days are chronological: the first date wins a tied maximum.
+    if (day.count > (peak?.count ?? 0)) peak = day;
+  }
+  return { total, active, peak };
+}
+
+function renderSky(theme, mode) {
+  let svg = '<g data-sky="true" aria-hidden="true">\n';
+  // Fixed coordinates keep daily rebuilds reproducible; these are decoration.
+  for (let index = 0; index < 39; index++) {
+    const x = 480 + (index * 157) % 550;
+    const y = 135 + (index * 73) % 175;
+    // Keep the statistics panel free of specks behind its text.
+    if (x > 660 && y < 218) continue;
+    const opacity = mode === 'dark' ? 0.25 + (index % 4) * 0.1 : 0.2 + (index % 4) * 0.05;
+    svg += `<circle cx="${x}" cy="${y}" r="${index % 5 === 0 ? 1.2 : 0.75}" fill="${theme.muted}" opacity="${opacity.toFixed(2)}"/>\n`;
+  }
+  svg += '<g data-decoration="moon">\n';
+  for (const [radius, opacity] of [[48, 0.025], [38, 0.04], [30, 0.065]]) {
+    svg += `<circle cx="1110" cy="174" r="${radius}" fill="${theme.accent}" opacity="${opacity}"/>\n`;
+  }
+  // A fixed crescent silhouette, independent of the date and lunar phase.
+  svg += `<path d="M1118 153A23 23 0 1 0 1129 189A19 19 0 0 1 1118 153Z" fill="${mode === 'dark' ? '#e3eaff' : theme.accent}"/>\n</g>\n</g>\n`;
+  return svg;
+}
+
 export function renderCity(data, mode) {
   validateContributionData(data);
   const theme = THEMES[mode];
   if (!theme) fail(`Unknown theme: ${mode}.`);
   const geometry = cityGeometry(data);
-  const total = data.days.reduce((sum, day) => sum + day.count, 0);
-  const active = data.days.filter(day => day.count > 0).length;
+  const { total, active, peak } = contributionStatistics(data);
   const formattedTotal = total.toLocaleString('en-US');
   const description = `${data.username}'s visible GitHub contribution calendar, ${data.range.start} to ${data.range.end}: ${formattedTotal} contributions across ${active} active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub's daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality.`;
-  let svg = svgStart(HEIGHT, `A year of building — ${data.username}`, description, theme);
+  let svg = svgStart(HEIGHT, `A year of building — ${data.username}`, `${description} The crescent moon and stars are fixed decorative details, not astronomical data.`, theme);
   svg += `<rect x="12" y="12" width="1176" height="${HEIGHT - 24}" rx="8" fill="none" stroke="${theme.line}"/>\n<g stroke="${theme.grid}" stroke-width="0.55" opacity="0.55">\n`;
-  for (let x = 48; x <= 1152; x += 48) svg += `<path d="M${x} 128V${HEIGHT - 32}"/>\n`;
-  for (let y = 128; y <= HEIGHT - 32; y += 44) svg += `<path d="M48 ${y}H1152"/>\n`;
+  for (let x = 48; x <= 1152; x += 48) svg += `<path d="M${x} 128V668"/>\n`;
+  for (let y = 128; y <= 668; y += 44) svg += `<path d="M48 ${y}H1152"/>\n`;
   svg += '</g>\n';
-  svg += `<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">\n<rect x="48" y="44" width="4" height="30" rx="2" fill="${theme.accent}"/>\n<text x="68" y="68" fill="${theme.text}" font-size="30" font-weight="600">A year of building</text>\n<text x="68" y="94" fill="${theme.muted}" font-size="15">Visible contribution history · ${escapeXml(data.username)}</text>\n`;
-  svg += `<path d="M48 113H1152" fill="none" stroke="${theme.line}"/><path d="M48 113H192" fill="none" stroke="${theme.accent}" stroke-width="1.25"/>\n`;
+  svg += renderSky(theme, mode);
+  svg += `<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">\n<g data-console="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace">\n<text x="48" y="61" fill="${theme.text}" font-size="28" font-weight="600"><tspan fill="${theme.accent}">~/</tspan>contribution-city</text>\n<text x="1152" y="59" text-anchor="end" fill="${theme.muted}" font-size="14">${escapeXml(data.username)}</text>\n<path d="M48 80H1152" fill="none" stroke="${theme.line}"/><path d="M48 80H250" fill="none" stroke="${theme.accent}" stroke-width="1.5"/>\n<text x="48" y="108" fill="${theme.muted}" font-size="16"><tspan fill="${theme.accent}">$</tspan> node tools/profile/generate.mjs <tspan opacity="0.8"># one plot per day</tspan></text>\n</g>\n`;
+  svg += `<g data-statistics="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" text-anchor="end" fill="${theme.muted}" font-size="15">\n<text x="1020" y="151" font-size="18"><tspan fill="${theme.accent}" font-weight="600">${formattedTotal}</tspan> contributions</text>\n<text x="1020" y="178">${active} active days · ${data.days.length} days shown</text>\n<text x="1020" y="205">${peak ? `Peak · ${peak.date} · ${peak.count.toLocaleString('en-US')}` : 'No active days in this calendar'}</text>\n</g>\n`;
   svg += '<g stroke-linejoin="round">\n';
   // The footprint is the actual calendar. There are no added skyline buildings.
   for (const { ground } of geometry) svg += `<polygon points="${pointsToString(ground)}" fill="${theme.ground}" stroke="${theme.groundEdge}" stroke-width="0.55"/>\n`;
@@ -290,8 +324,12 @@ export function renderCity(data, mode) {
     const y = 489.3 + week * 3.3;
     svg += `<path d="M${x} ${y - 21}v7" fill="none" stroke="${theme.groundEdge}"/><text x="${x}" y="${y}" fill="${theme.muted}" font-size="14" text-anchor="middle">${month}</text>\n`;
   }
-  // Totals and date range stay in the README as readable text, including on mobile.
-  svg += `<path d="M48 ${HEIGHT - 24}H1152" stroke="${theme.line}"/>\n</g>\n</svg>\n`;
+  // The caption repeats these figures as readable text on small screens.
+  svg += `<path d="M48 676H1152" stroke="${theme.line}"/>\n<g data-legend="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" fill="${theme.muted}" font-size="13">\n<text x="48" y="702">quiet</text>\n`;
+  for (let level = 0; level <= 4; level++) {
+    svg += `<rect data-level="${level}" x="${108 + level * 21}" y="690" width="14" height="14" rx="1" fill="${level === 0 ? theme.ground : theme.roof[level - 1]}" stroke="${level === 0 ? theme.groundEdge : theme.accent}" stroke-width="0.5"/>\n`;
+  }
+  svg += `<text x="218" y="702">skyscraper</text>\n<text x="1152" y="702" text-anchor="end">${data.range.start} — ${data.range.end}</text>\n</g>\n</g>\n</svg>\n`;
   return svg;
 }
 
