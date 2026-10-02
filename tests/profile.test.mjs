@@ -108,19 +108,21 @@ test('validation rejects invalid dates, gaps, wrong metadata, levels, and unsafe
 
 test('height encodes counts monotonically within bounded drawing space', () => {
   assert.equal(buildingHeight(0, 100), 0);
-  assert.equal(buildingHeight(100, 100), 108);
+  assert.equal(buildingHeight(100, 100), 236);
   assert.ok(buildingHeight(1, 100) < buildingHeight(10, 100));
   assert.ok(buildingHeight(10, 100) < buildingHeight(100, 100));
   assert.equal(buildingHeight(0, 0), 0);
   assert.throws(() => buildingHeight(10, 5), /height inputs/);
   assert.throws(() => buildingHeight(-1, 5), /height inputs/);
-  for (const length of [365, 370, 372]) {
+  for (let count = 1; count < 1000; count++) assert.ok(buildingHeight(count, 1000) < buildingHeight(count + 1, 1000));
+  for (const length of [365, 370, 371, 372]) {
     const geometry = cityGeometry(fixture(length));
     assert.equal(geometry.length, length);
     for (const building of geometry) {
-      for (const [x, y] of [...building.roof, ...building.ground, ...building.left, ...building.right]) {
+      const crown = building.crown;
+      for (const [x, y] of [...building.roof, ...building.ground, ...building.left, ...building.right, ...(crown ? [...crown.roof, ...crown.ground, ...(crown.antenna ?? [])] : [])]) {
         assert.ok(x >= 48 && x <= WIDTH - 48, `${building.day.date}: x=${x}`);
-        assert.ok(y >= 110 && y <= HEIGHT - 50, `${building.day.date}: y=${y}`);
+        assert.ok(y >= 116 && y <= HEIGHT - 50, `${building.day.date}: y=${y}`);
       }
     }
   }
@@ -141,7 +143,7 @@ test('both themes contain real accessible records and are deterministic self-con
     assert.match(svg, /aria-labelledby="title description"/);
     assert.match(svg, /not productivity or quality/);
     assert.doesNotMatch(svg, /<script|<foreignObject|<animate|<image|(?:href|src)\s*=|@font-face|<!DOCTYPE|<!ENTITY/i);
-    assert.match(svg, /width="1200" height="410"/);
+    assert.match(svg, /width="1200" height="700"/);
     const header = renderHeader(mode);
     assert.equal(header, renderHeader(mode));
     assert.match(header, /Brian Schäffner/);
@@ -156,15 +158,58 @@ test('both themes contain real accessible records and are deterministic self-con
 });
 
 test('zero-contribution calendars render flat plots without NaN or raised buildings', () => {
-  const data = fixture(370, true);
+  const data = fixture(371, true);
   assert.ok(cityGeometry(data).every(building => building.height === 0));
   for (const mode of ['dark', 'light']) {
     const svg = renderCity(data, mode);
     assert.match(svg, /0 contributions/);
     assert.match(svg, /0 active days/);
     assert.doesNotMatch(svg, /NaN|Infinity/);
-    assert.equal([...svg.matchAll(/data-count="0"/g)].length, 370);
-    assert.doesNotMatch(svg, /opacity="0.35"/);
+    assert.equal([...svg.matchAll(/data-count="0"/g)].length, 371);
+    assert.doesNotMatch(svg, /data-facade=|data-rooftop=/);
+  }
+});
+
+test('two illuminated facades and rooftop details decorate only actual active buildings', () => {
+  const data = fixture();
+  const geometry = cityGeometry(data);
+  const active = geometry.filter(building => building.height > 0);
+  const crowned = geometry.filter(building => building.crown);
+  assert.ok(crowned.length > 0);
+  for (const building of geometry) {
+    for (let vertex = 0; vertex < 4; vertex++) {
+      assert.equal(building.roof[vertex][0], building.ground[vertex][0]);
+      assert.ok(Math.abs(building.ground[vertex][1] - building.roof[vertex][1] - building.height) < 0.011);
+    }
+    if (building.crown) assert.ok(building.height >= 132 && building.day.level >= 3);
+  }
+  for (const mode of ['dark', 'light']) {
+    const svg = renderCity(data, mode);
+    assert.equal([...svg.matchAll(/data-facade="left"/g)].length, active.length);
+    assert.equal([...svg.matchAll(/data-facade="right"/g)].length, active.length);
+    assert.equal([...svg.matchAll(/data-rooftop="true"/g)].length, crowned.length);
+    const dates = [...svg.matchAll(/data-date="([^"]+)"/g)].map(match => match[1]);
+    assert.deepEqual(dates.toSorted(), data.days.map(day => day.date).toSorted());
+    const footDepths = dates.map(date => geometry.find(building => building.day.date === date).ground[2][1]);
+    assert.deepEqual(footDepths, footDepths.toSorted((a, b) => a - b));
+  }
+});
+
+test('a single skyscraper on either calendar boundary keeps its crown below the heading', () => {
+  for (const length of [365, 371, 372]) {
+    for (const peak of [0, length - 1]) {
+      const data = fixture(length, true);
+      data.days[peak].count = 1000;
+      data.days[peak].level = 4;
+      const geometry = cityGeometry(data);
+      const tower = geometry[peak];
+      assert.equal(tower.height, 236);
+      assert.ok(tower.crown);
+      assert.ok(geometry.filter(building => building.height > 0).length === 1);
+      assert.ok(tower.crown.roof.every(([, y]) => y >= 116 && y <= HEIGHT - 50));
+      if (tower.crown.antenna) assert.ok(tower.crown.antenna.every(([, y]) => y >= 116 && y <= HEIGHT - 50));
+      for (const mode of ['dark', 'light']) assert.doesNotMatch(renderCity(data, mode), /NaN|Infinity/);
+    }
   }
 });
 

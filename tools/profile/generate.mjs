@@ -6,13 +6,14 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const USERNAME = 'brianvarskonst';
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const WIDTH = 1200;
-export const HEIGHT = 410;
+export const HEIGHT = 700;
+export const PRIMARY_BLUE = '#3858E9';
 const DAY_MS = 86_400_000;
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const OUTPUTS = ['data/contributions.json', 'assets/contribution-city-dark.svg', 'assets/contribution-city-light.svg', 'assets/header-dark.svg', 'assets/header-light.svg'];
 const THEMES = {
-  dark: { background: '#0d1117', text: '#f0f6fc', muted: '#919ca9', line: '#263340', ground: '#131e2d', groundEdge: '#233750', accent: '#79a9ea', roof: ['#406187', '#527eaf', '#6899cf', '#8ab8ee'], left: ['#243c58', '#305075', '#3e6692', '#527eb2'], right: ['#304d70', '#3e6691', '#5181b6', '#699bd0'], window: '#bdd7f7' },
-  light: { background: '#ffffff', text: '#202b36', muted: '#576674', line: '#dce5eb', ground: '#edf2f5', groundEdge: '#d2dde4', accent: '#2f6fb7', roof: ['#8cadd2', '#6e97c6', '#4f7fae', '#376ca2'], left: ['#547499', '#3e638b', '#2f537b', '#254668'], right: ['#6b8bb1', '#537bac', '#3f6595', '#32557f'], window: '#d6e4f3' },
+  dark: { background: '#0b1020', text: '#f0f3ff', muted: '#a2abc3', line: '#253152', grid: '#192344', ground: '#121b31', groundEdge: '#253252', accent: PRIMARY_BLUE, outline: '#4865b9', roof: ['#253c88', '#2d45ac', '#3350ce', PRIMARY_BLUE], left: ['#142044', '#192851', '#1e3260', '#243c74'], right: ['#203362', '#273f79', '#304c92', '#395bad'], window: '#b8c8ff', dimWindow: '#456197', rail: '#7896ff' },
+  light: { background: '#ffffff', text: '#202a46', muted: '#52617d', line: '#d6def1', grid: '#e9edf9', ground: '#edf1fa', groundEdge: '#cdd7ee', accent: PRIMARY_BLUE, outline: '#4964ac', roof: ['#c5d0ff', '#a4b7ff', '#7290f8', PRIMARY_BLUE], left: ['#253769', '#2c407b', '#334b90', '#3956a8'], right: ['#3d56a1', '#4764b7', '#5171cd', '#5b7ae0'], window: '#edf1ff', dimWindow: '#6681c7', rail: '#3858E9' },
 };
 
 function fail(message) { throw new Error(message); }
@@ -169,11 +170,28 @@ export async function fetchContributions(username = USERNAME, fetchImpl = global
 
 export function buildingHeight(count, maximum) {
   if (!Number.isSafeInteger(count) || count < 0 || !Number.isSafeInteger(maximum) || maximum < count) fail('Invalid height inputs.');
-  return count === 0 ? 0 : Number((18 + 90 * Math.sqrt(count / maximum)).toFixed(2));
+  // The power curve makes small positive counts legible without changing their order.
+  return count === 0 ? 0 : 52 + 184 * Math.pow(count / maximum, 0.38);
 }
 
 function point(x, y) { return [Number(x.toFixed(2)), Number(y.toFixed(2))]; }
 function pointsToString(points) { return points.map(pair => pair.join(',')).join(' '); }
+function interpolate(a, b, fraction) { return point(a[0] + (b[0] - a[0]) * fraction, a[1] + (b[1] - a[1]) * fraction); }
+
+function prism(ground, height) {
+  const roof = ground.map(([x, y]) => point(x, y - height));
+  return { ground, roof, left: [roof[3], roof[2], ground[2], ground[3]], right: [roof[2], roof[1], ground[1], ground[2]] };
+}
+
+function rooftop(roof, day, height) {
+  if (height < 132 || day.level < 3) return null;
+  const variant = Math.floor(dateValue(day.date) / DAY_MS) % 3;
+  const center = roof.reduce(([x, y], [px, py]) => [x + px / 4, y + py / 4], [0, 0]);
+  const footprint = roof.map(vertex => interpolate(center, vertex, variant === 2 ? 0.36 : 0.61));
+  const crown = prism(footprint, [12, 9, 17][variant]);
+  const antennaBase = interpolate(crown.roof[0], crown.roof[2], 0.5);
+  return { ...crown, antenna: variant === 1 ? [antennaBase, point(antennaBase[0], antennaBase[1] - 9)] : null };
+}
 
 export function cityGeometry(data) {
   validateContributionData(data);
@@ -181,22 +199,46 @@ export function cityGeometry(data) {
   return data.days.map((day, index) => {
     const week = Math.floor(index / 7);
     const weekday = index % 7;
-    const x = 154 + week * 18 - weekday * 12;
-    const y = 220 + week * 1.5 + weekday * 8.4;
+    const x = 168 + week * 18 - weekday * 14;
+    const y = 378 + week * 3.3 + weekday * 12;
     const height = buildingHeight(day.count, maximum);
-    const ground = [point(x, y), point(x + 15.2, y + 1.5), point(x + 5, y + 8.1), point(x - 10.2, y + 6.6)];
-    const roof = ground.map(([px, py]) => point(px, py - height));
-    const left = [roof[3], roof[2], ground[2], ground[3]];
-    const right = [roof[2], roof[1], ground[1], ground[2]];
-    for (const [px, py] of [...ground, ...roof, ...left, ...right]) {
-      if (px < 48 || px > WIDTH - 48 || py < 110 || py > HEIGHT - 50) fail(`City geometry exceeds the drawing bounds at ${day.date}.`);
+    const ground = [point(x, y), point(x + 16.6, y + 3), point(x + 3.4, y + 14.3), point(x - 13.2, y + 11.3)];
+    const body = prism(ground, height);
+    const crown = rooftop(body.roof, day, height);
+    const vertices = [...ground, ...body.roof, ...(crown ? [...crown.ground, ...crown.roof, ...(crown.antenna ?? [])] : [])];
+    for (const [px, py] of vertices) {
+      if (px < 48 || px > WIDTH - 48 || py < 116 || py > HEIGHT - 50) fail(`City geometry exceeds the drawing bounds at ${day.date}.`);
     }
-    return { day, week, weekday, height, ground, roof, left, right };
+    return { day, week, weekday, height, ...body, crown };
   });
 }
 
 function svgStart(height, title, description, theme) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${height}" viewBox="0 0 ${WIDTH} ${height}" role="img" aria-labelledby="title description">\n<title id="title">${escapeXml(title)}</title>\n<desc id="description">${escapeXml(description)}</desc>\n<rect width="${WIDTH}" height="${height}" rx="12" fill="${theme.background}"/>\n`;
+}
+
+function renderPrism({ left, right, roof }, theme, level) {
+  return `<polygon points="${pointsToString(left)}" fill="${theme.left[level]}" stroke="${theme.outline}" stroke-width="0.65"/><polygon points="${pointsToString(right)}" fill="${theme.right[level]}" stroke="${theme.outline}" stroke-width="0.65"/><polygon points="${pointsToString(roof)}" fill="${theme.roof[level]}" stroke="${theme.accent}" stroke-width="0.8"/>`;
+}
+
+function facadeWindows(a, b, height, columns, seed, theme, facade) {
+  let svg = `<g data-facade="${facade}">`;
+  for (let floor = 13, row = 0; floor < height - 12; floor += 11, row++) {
+    for (let column = 0; column < columns; column++) {
+      const center = (column + 0.5) / columns;
+      const p = interpolate(a, b, center - 0.087);
+      const q = interpolate(a, b, center + 0.087);
+      const window = [point(p[0], p[1] - floor), point(q[0], q[1] - floor), point(q[0], q[1] - floor - 3.2), point(p[0], p[1] - floor - 3.2)];
+      const lit = (seed + row * 11 + column * 7) % 13 > 3;
+      const blue = lit && (seed + row + column) % 7 === 0;
+      svg += `<polygon points="${pointsToString(window)}" fill="${lit ? blue ? theme.accent : theme.window : theme.dimWindow}" opacity="${lit ? blue ? '1' : '0.87' : '0.3'}"/>`;
+    }
+  }
+  return `${svg}</g>`;
+}
+
+function verticalRail(a, b, theme, opacity) {
+  return `<path d="M${a.join(',')}L${b.join(',')}" fill="none" stroke="${theme.accent}" stroke-width="2.8" opacity="0.12"/><path d="M${a.join(',')}L${b.join(',')}" fill="none" stroke="${theme.rail}" stroke-width="0.8" opacity="${opacity}"/>`;
 }
 
 export function renderCity(data, mode) {
@@ -207,22 +249,36 @@ export function renderCity(data, mode) {
   const total = data.days.reduce((sum, day) => sum + day.count, 0);
   const active = data.days.filter(day => day.count > 0).length;
   const formattedTotal = total.toLocaleString('en-US');
-  const description = `${data.username}'s visible GitHub contribution calendar, ${data.range.start} to ${data.range.end}: ${formattedTotal} contributions across ${active} active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height follows its contribution count, and empty plots represent zero contributions. Colors follow GitHub's daily activity levels. This records contribution activity, not productivity or quality.`;
+  const description = `${data.username}'s visible GitHub contribution calendar, ${data.range.start} to ${data.range.end}: ${formattedTotal} contributions across ${active} active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub's daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality.`;
   let svg = svgStart(HEIGHT, `A year of building — ${data.username}`, description, theme);
+  svg += `<rect x="12" y="12" width="1176" height="${HEIGHT - 24}" rx="8" fill="none" stroke="${theme.line}"/>\n<g stroke="${theme.grid}" stroke-width="0.55" opacity="0.55">\n`;
+  for (let x = 48; x <= 1152; x += 48) svg += `<path d="M${x} 128V${HEIGHT - 32}"/>\n`;
+  for (let y = 128; y <= HEIGHT - 32; y += 44) svg += `<path d="M48 ${y}H1152"/>\n`;
+  svg += '</g>\n';
   svg += `<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">\n<rect x="48" y="44" width="4" height="30" rx="2" fill="${theme.accent}"/>\n<text x="68" y="68" fill="${theme.text}" font-size="30" font-weight="600">A year of building</text>\n<text x="68" y="94" fill="${theme.muted}" font-size="15">Visible contribution history · ${escapeXml(data.username)}</text>\n`;
+  svg += `<path d="M48 113H1152" fill="none" stroke="${theme.line}"/><path d="M48 113H192" fill="none" stroke="${theme.accent}" stroke-width="1.25"/>\n`;
   svg += '<g stroke-linejoin="round">\n';
-  // Ground first, then buildings from the back row to the front row for correct occlusion.
+  // The footprint is the actual calendar. There are no added skyline buildings.
   for (const { ground } of geometry) svg += `<polygon points="${pointsToString(ground)}" fill="${theme.ground}" stroke="${theme.groundEdge}" stroke-width="0.55"/>\n`;
-  for (const building of [...geometry].sort((a, b) => a.weekday - b.weekday || a.week - b.week)) {
-    const { day, height, roof, left, right, ground } = building;
-    svg += `<g data-date="${day.date}" data-count="${day.count}"><title>${day.date}: ${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}</title>`;
+  // Sort by projected footpoint depth so the steeper plane occludes correctly.
+  for (const building of [...geometry].sort((a, b) => a.ground[2][1] - b.ground[2][1] || a.ground[2][0] - b.ground[2][0])) {
+    const { day, height, roof, ground, crown } = building;
+    svg += `<g data-date="${day.date}" data-count="${day.count}" data-height="${height.toFixed(2)}"><title>${day.date}: ${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}</title>`;
     if (height === 0) {
       svg += `<polygon points="${pointsToString(ground)}" fill="${theme.ground}" stroke="${theme.groundEdge}" stroke-width="0.55"/>`;
     } else {
       const level = day.level - 1;
-      svg += `<polygon points="${pointsToString(left)}" fill="${theme.left[level]}"/><polygon points="${pointsToString(right)}" fill="${theme.right[level]}"/><polygon points="${pointsToString(roof)}" fill="${theme.roof[level]}"/>`;
-      for (let floor = 14; floor < height - 9; floor += 18) {
-        svg += `<path d="M${pointsToString([point(ground[3][0] + 1.7, ground[3][1] - floor), point(ground[2][0] - 1.6, ground[2][1] - floor)]).replace(' ', 'L')}" fill="none" stroke="${theme.window}" stroke-width="0.75" opacity="0.35"/>`;
+      svg += renderPrism(building, theme, level);
+      const seed = Math.floor(dateValue(day.date) / DAY_MS);
+      svg += facadeWindows(ground[3], ground[2], height, 3, seed, theme, 'left');
+      svg += facadeWindows(ground[2], ground[1], height, 2, seed + 3, theme, 'right');
+      svg += verticalRail(roof[2], ground[2], theme, '0.9');
+      svg += verticalRail(roof[3], ground[3], theme, '0.48');
+      if (crown) {
+        svg += `<g data-rooftop="true">${renderPrism(crown, theme, level)}`;
+        svg += verticalRail(crown.roof[2], crown.ground[2], theme, '0.9');
+        if (crown.antenna) svg += `<path d="M${crown.antenna[0].join(',')}L${crown.antenna[1].join(',')}" fill="none" stroke="${theme.rail}" stroke-width="0.9"/>`;
+        svg += '</g>';
       }
     }
     svg += '</g>\n';
@@ -230,10 +286,12 @@ export function renderCity(data, mode) {
   svg += '</g>\n';
   for (const { day, week } of geometry.filter(({ day }) => day.date.endsWith('-01'))) {
     const month = MONTHS[new Date(dateValue(day.date)).getUTCMonth()].slice(0, 3);
-    svg += `<text x="${154 + week * 18}" y="377" fill="${theme.muted}" font-size="14" text-anchor="middle">${month}</text>\n`;
+    const x = 87.4 + week * 18;
+    const y = 489.3 + week * 3.3;
+    svg += `<path d="M${x} ${y - 21}v7" fill="none" stroke="${theme.groundEdge}"/><text x="${x}" y="${y}" fill="${theme.muted}" font-size="14" text-anchor="middle">${month}</text>\n`;
   }
   // Totals and date range stay in the README as readable text, including on mobile.
-  svg += `<path d="M48 398H1152" stroke="${theme.line}"/>\n</g>\n</svg>\n`;
+  svg += `<path d="M48 ${HEIGHT - 24}H1152" stroke="${theme.line}"/>\n</g>\n</svg>\n`;
   return svg;
 }
 
@@ -241,9 +299,9 @@ export function renderHeader(mode) {
   const theme = THEMES[mode];
   if (!theme) fail(`Unknown theme: ${mode}.`);
   let svg = svgStart(192, 'Brian Schäffner', 'Technical Leadership · Backend Architecture · Platform Engineering. An original three-layer architectural stack accompanies the name.', theme);
-  svg += `<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">\n<rect x="48" y="47" width="4" height="96" rx="2" fill="${theme.accent}"/>\n<text x="70" y="94" fill="${theme.text}" font-size="56" font-weight="600" letter-spacing="-1.5">Brian Schäffner</text>\n<text x="72" y="135" fill="${theme.muted}" font-size="20">Technical Leadership · Backend Architecture · Platform Engineering</text>\n</g>\n<g stroke="${theme.accent}" stroke-width="1.5" stroke-linejoin="round">\n`;
+  svg += `<rect x="12" y="12" width="1176" height="168" rx="8" fill="none" stroke="${theme.line}"/>\n<g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">\n<rect x="48" y="47" width="4" height="96" rx="2" fill="${theme.accent}"/>\n<text x="70" y="94" fill="${theme.text}" font-size="56" font-weight="600" letter-spacing="-1.5">Brian Schäffner</text>\n<text x="72" y="135" fill="${theme.muted}" font-size="20">Technical Leadership · Backend Architecture · Platform Engineering</text>\n</g>\n<g stroke="${theme.accent}" stroke-width="2" stroke-linejoin="round">\n`;
   for (const offset of [42, 21, 0]) {
-    svg += `<path d="M1030 ${43 + offset}L1118 ${71 + offset}L1067 ${94 + offset}L979 ${66 + offset}Z" fill="${theme.ground}"/><path d="M979 ${66 + offset}V${75 + offset}L1067 ${103 + offset}L1118 ${80 + offset}V${71 + offset}M1067 ${94 + offset}V${103 + offset}" fill="none" opacity="0.5"/>\n`;
+    svg += `<path d="M1030 ${43 + offset}L1118 ${71 + offset}L1067 ${94 + offset}L979 ${66 + offset}Z" fill="${theme.ground}"/><path d="M979 ${66 + offset}V${75 + offset}L1067 ${103 + offset}L1118 ${80 + offset}V${71 + offset}M1067 ${94 + offset}V${103 + offset}" fill="none" opacity="0.7"/>\n`;
   }
   return `${svg}</g>\n</svg>\n`;
 }

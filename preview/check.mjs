@@ -58,11 +58,13 @@ try {
   }
   const page = await browser.newPage();
   for (const file of ['header-dark.svg', 'header-light.svg', 'contribution-city-dark.svg', 'contribution-city-light.svg']) {
+    const source = await readFile(resolve(root, 'assets', file), 'utf8');
+    assert.match(source, /#3858e9/i, 'Header and city use the exact requested primary blue');
     await page.goto(`http://127.0.0.1:4173/assets/${file}`);
     const bounds = await page.evaluate(() => {
       const svg = document.querySelector('svg');
       const box = svg.viewBox.baseVal;
-      const clipped = [...svg.querySelectorAll('text, polygon, polyline, line, path')].filter(el => {
+      const clipped = [...svg.querySelectorAll('text, polygon, polyline, line, path, rect, circle, ellipse')].filter(el => {
         const b = el.getBBox();
         return b.x < box.x - 1 || b.y < box.y - 1 || b.x + b.width > box.width + 1 || b.y + b.height > box.height + 1;
       }).map(el => { const b = el.getBBox(); return { tag: el.tagName, text: el.textContent.slice(0, 80), bounds: { x: b.x, y: b.y, width: b.width, height: b.height } }; });
@@ -70,6 +72,10 @@ try {
     });
     assert.deepEqual(bounds.clipped, [], `${file}: geometry and labels must stay inside viewBox`);
     assert.equal(bounds.unsafe, 0);
+    if (file.startsWith('contribution-city-')) {
+      await page.setViewportSize({ width: bounds.width, height: bounds.height });
+      await page.screenshot({ path: resolve(root, `.local/city-${file.includes('-dark') ? 'dark' : 'light'}.png`), clip: { x: 0, y: 0, width: bounds.width, height: bounds.height } });
+    }
     checks.push({ file, ...bounds });
   }
 } finally { await browser.close(); }

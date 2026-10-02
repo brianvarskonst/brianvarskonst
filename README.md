@@ -16,7 +16,7 @@ I work at the intersection of architecture, delivery, DevOps and engineering lea
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/contribution-city-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="assets/contribution-city-light.svg" />
-  <img src="assets/contribution-city-light.svg" alt="An isometric city built from my visible GitHub contribution calendar. Each tile represents a day; building height reflects activity." width="1200" />
+  <img src="assets/contribution-city-light.svg" alt="A blue cyberpunk skyline built from my visible GitHub contribution calendar, with illuminated high-rise facades. Each tile represents a day; tower height reflects activity." width="1200" />
 </picture>
 
 <!-- contribution-summary:start -->
