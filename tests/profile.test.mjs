@@ -120,7 +120,7 @@ test('height encodes counts monotonically within bounded drawing space', () => {
     for (const building of geometry) {
       for (const [x, y] of [...building.roof, ...building.ground, ...building.left, ...building.right]) {
         assert.ok(x >= 48 && x <= WIDTH - 48, `${building.day.date}: x=${x}`);
-        assert.ok(y >= 120 && y <= HEIGHT - 100, `${building.day.date}: y=${y}`);
+        assert.ok(y >= 110 && y <= HEIGHT - 50, `${building.day.date}: y=${y}`);
       }
     }
   }
@@ -135,13 +135,13 @@ test('both themes contain real accessible records and are deterministic self-con
     assert.match(svg, /A year of building/);
     assert.match(svg, /Visible contribution history/);
     assert.match(svg, /anonymized private contributions/);
-    assert.match(svg, /2025-09-28 — 2026-10-02/);
+    assert.match(svg, /2025-09-28 to 2026-10-02/);
     assert.match(svg, /contributions.*active days/);
     assert.match(svg, /<title>2025-10-03: 1000 contributions<\/title>/);
     assert.match(svg, /aria-labelledby="title description"/);
     assert.match(svg, /not productivity or quality/);
     assert.doesNotMatch(svg, /<script|<foreignObject|<animate|<image|(?:href|src)\s*=|@font-face|<!DOCTYPE|<!ENTITY/i);
-    assert.match(svg, /width="1200" height="500"/);
+    assert.match(svg, /width="1200" height="410"/);
     const header = renderHeader(mode);
     assert.equal(header, renderHeader(mode));
     assert.match(header, /Brian Schäffner/);

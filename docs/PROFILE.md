@@ -1,6 +1,6 @@
 # Profile maintenance
 
-The profile retains the existing English description, projects, technologies and engineering principles. Original SVGs add an architectural contribution city and a restrained name banner. Both images use GitHub's documented `<picture>` theme switching. The existing technology icons now select their light or dark variant, too.
+The profile retains the existing English description, projects, technologies and engineering principles. Original SVGs add an architectural contribution city and a restrained name banner, with a coherent steel-blue palette in both themes. The city has a compact layout and larger month labels. Contribution totals and dates appear once as readable text below the city rather than being duplicated inside the scaled image. Both images use GitHub's documented `<picture>` theme switching. The existing technology icons now select their light or dark variant, too.
 
 The city represents only the publicly visible contribution calendar at `https://github.com/users/brianvarskonst/contributions`. Dates and counts may include private contributions that the account owner has chosen to show anonymously on their public profile. No repository names, code, credentials or private API data are requested. Activity is an illustration, not a measure of engineering quality.
 

@@ -6,13 +6,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const USERNAME = 'brianvarskonst';
 export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 export const WIDTH = 1200;
-export const HEIGHT = 500;
+export const HEIGHT = 410;
 const DAY_MS = 86_400_000;
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const OUTPUTS = ['data/contributions.json', 'assets/contribution-city-dark.svg', 'assets/contribution-city-light.svg', 'assets/header-dark.svg', 'assets/header-light.svg'];
 const THEMES = {
-  dark: { background: '#0d1117', text: '#f0f6fc', muted: '#919ca9', line: '#263340', ground: '#18232d', groundEdge: '#263644', accent: '#55c6c1', roof: ['#367d82', '#449f9e', '#55bdb4', '#76dbca'], left: ['#204952', '#28666a', '#337c79', '#41988e'], right: ['#2a5e67', '#328181', '#409d96', '#58b8aa'], window: '#a2ede0' },
-  light: { background: '#ffffff', text: '#202b36', muted: '#576674', line: '#dce5eb', ground: '#edf2f5', groundEdge: '#d2dde4', accent: '#087f7c', roof: ['#81b6ba', '#60a9a8', '#3d9992', '#21877c'], left: ['#4e808a', '#3b7b80', '#2b726e', '#1d655e'], right: ['#63959e', '#4b9395', '#36877e', '#27796d'], window: '#c4e5dd' },
+  dark: { background: '#0d1117', text: '#f0f6fc', muted: '#919ca9', line: '#263340', ground: '#131e2d', groundEdge: '#233750', accent: '#79a9ea', roof: ['#406187', '#527eaf', '#6899cf', '#8ab8ee'], left: ['#243c58', '#305075', '#3e6692', '#527eb2'], right: ['#304d70', '#3e6691', '#5181b6', '#699bd0'], window: '#bdd7f7' },
+  light: { background: '#ffffff', text: '#202b36', muted: '#576674', line: '#dce5eb', ground: '#edf2f5', groundEdge: '#d2dde4', accent: '#2f6fb7', roof: ['#8cadd2', '#6e97c6', '#4f7fae', '#376ca2'], left: ['#547499', '#3e638b', '#2f537b', '#254668'], right: ['#6b8bb1', '#537bac', '#3f6595', '#32557f'], window: '#d6e4f3' },
 };
 
 function fail(message) { throw new Error(message); }
@@ -182,14 +182,14 @@ export function cityGeometry(data) {
     const week = Math.floor(index / 7);
     const weekday = index % 7;
     const x = 154 + week * 18 - weekday * 12;
-    const y = 245 + week * 1.5 + weekday * 8.4;
+    const y = 220 + week * 1.5 + weekday * 8.4;
     const height = buildingHeight(day.count, maximum);
     const ground = [point(x, y), point(x + 15.2, y + 1.5), point(x + 5, y + 8.1), point(x - 10.2, y + 6.6)];
     const roof = ground.map(([px, py]) => point(px, py - height));
     const left = [roof[3], roof[2], ground[2], ground[3]];
     const right = [roof[2], roof[1], ground[1], ground[2]];
     for (const [px, py] of [...ground, ...roof, ...left, ...right]) {
-      if (px < 48 || px > WIDTH - 48 || py < 120 || py > HEIGHT - 100) fail(`City geometry exceeds the drawing bounds at ${day.date}.`);
+      if (px < 48 || px > WIDTH - 48 || py < 110 || py > HEIGHT - 50) fail(`City geometry exceeds the drawing bounds at ${day.date}.`);
     }
     return { day, week, weekday, height, ground, roof, left, right };
   });
@@ -230,9 +230,10 @@ export function renderCity(data, mode) {
   svg += '</g>\n';
   for (const { day, week } of geometry.filter(({ day }) => day.date.endsWith('-01'))) {
     const month = MONTHS[new Date(dateValue(day.date)).getUTCMonth()].slice(0, 3);
-    svg += `<text x="${154 + week * 18}" y="417" fill="${theme.muted}" font-size="12" text-anchor="middle">${month}</text>\n`;
+    svg += `<text x="${154 + week * 18}" y="377" fill="${theme.muted}" font-size="14" text-anchor="middle">${month}</text>\n`;
   }
-  svg += `<path d="M48 438H1152" stroke="${theme.line}"/>\n<text x="48" y="468" fill="${theme.text}" font-size="16" font-weight="500">${formattedTotal} contributions<tspan fill="${theme.muted}" font-weight="400"> · ${active} active days</tspan></text>\n<text x="1152" y="468" fill="${theme.muted}" font-size="14" text-anchor="end">${data.range.start} — ${data.range.end}</text>\n</g>\n</svg>\n`;
+  // Totals and date range stay in the README as readable text, including on mobile.
+  svg += `<path d="M48 398H1152" stroke="${theme.line}"/>\n</g>\n</svg>\n`;
   return svg;
 }
 
