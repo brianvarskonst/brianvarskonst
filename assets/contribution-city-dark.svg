@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="724" viewBox="0 0 1200 724" role="img" aria-labelledby="title description">
 <title id="title">A year of building — brianvarskonst</title>
-<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-10-12 to 2026-10-13: 2,947 contributions across 153 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality. The crescent moon and stars are fixed decorative details, not astronomical data.</desc>
+<desc id="description">brianvarskonst&apos;s visible GitHub contribution calendar, 2025-10-12 to 2026-10-14: 2,947 contributions across 153 active days. The public calendar can include anonymized private contributions when the profile owner enables them. Each plot represents one date; building height increases with its contribution count, and empty plots represent zero contributions. Roof shades follow GitHub&apos;s daily activity levels; windows and rooftop details are decorative. This records contribution activity, not productivity or quality. The crescent moon and stars are fixed decorative details, not astronomical data.</desc>
 <rect width="1200" height="724" rx="12" fill="#0b1020"/>
 <rect x="12" y="12" width="1176" height="700" rx="8" fill="none" stroke="#253152"/>
 <g stroke="#192344" stroke-width="0.55" opacity="0.55">
@@ -87,7 +87,7 @@
 </g>
 <g data-statistics="true" font-family="ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace" text-anchor="end" fill="#a2abc3" font-size="15">
 <text x="1020" y="151" font-size="18"><tspan fill="#3858E9" font-weight="600">2,947</tspan> contributions</text>
-<text x="1020" y="178">153 active days · 367 days shown</text>
+<text x="1020" y="178">153 active days · 368 days shown</text>
 <text x="1020" y="205">Peak · 2026-10-02 · 222</text>
 </g>
 <g stroke-linejoin="round">
@@ -458,6 +458,7 @@
 <polygon points="1104,549.6 1120.6,552.6 1107.4,563.9 1090.8,560.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/>
 <polygon points="1090,561.6 1106.6,564.6 1093.4,575.9 1076.8,572.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/>
 <polygon points="1076,573.6 1092.6,576.6 1079.4,587.9 1062.8,584.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/>
+<polygon points="1062,585.6 1078.6,588.6 1065.4,599.9 1048.8,596.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/>
 <g data-date="2025-10-12" data-count="0" data-height="0.00"><title>2025-10-12: 0 contributions</title><polygon points="168,378 184.6,381 171.4,392.3 154.8,389.3" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2025-10-19" data-count="0" data-height="0.00"><title>2025-10-19: 0 contributions</title><polygon points="186,381.3 202.6,384.3 189.4,395.6 172.8,392.6" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2025-10-26" data-count="0" data-height="0.00"><title>2025-10-26: 0 contributions</title><polygon points="204,384.6 220.6,387.6 207.4,398.9 190.8,395.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
@@ -805,6 +806,7 @@
 <g data-date="2026-08-21" data-count="0" data-height="0.00"><title>2026-08-21: 0 contributions</title><polygon points="890,583.2 906.6,586.2 893.4,597.5 876.8,594.5" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2026-09-17" data-count="0" data-height="0.00"><title>2026-09-17: 0 contributions</title><polygon points="976,584.4 992.6,587.4 979.4,598.7 962.8,595.7" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2026-08-01" data-count="0" data-height="0.00"><title>2026-08-01: 0 contributions</title><polygon points="822,585.3 838.6,588.3 825.4,599.6 808.8,596.6" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
+<g data-date="2026-10-14" data-count="0" data-height="0.00"><title>2026-10-14: 0 contributions</title><polygon points="1062,585.6 1078.6,588.6 1065.4,599.9 1048.8,596.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2026-08-28" data-count="0" data-height="0.00"><title>2026-08-28: 0 contributions</title><polygon points="908,586.5 924.6,589.5 911.4,600.8 894.8,597.8" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2026-09-24" data-count="0" data-height="0.00"><title>2026-09-24: 0 contributions</title><polygon points="994,587.7 1010.6,590.7 997.4,602 980.8,599" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
 <g data-date="2026-08-08" data-count="0" data-height="0.00"><title>2026-08-08: 0 contributions</title><polygon points="840,588.6 856.6,591.6 843.4,602.9 826.8,599.9" fill="#121b31" stroke="#253252" stroke-width="0.55"/></g>
@@ -847,7 +849,7 @@
 <rect data-level="3" x="171" y="690" width="14" height="14" rx="1" fill="#3350ce" stroke="#3858E9" stroke-width="0.5"/>
 <rect data-level="4" x="192" y="690" width="14" height="14" rx="1" fill="#3858E9" stroke="#3858E9" stroke-width="0.5"/>
 <text x="218" y="702">skyscraper</text>
-<text x="1152" y="702" text-anchor="end">2025-10-12 — 2026-10-13</text>
+<text x="1152" y="702" text-anchor="end">2025-10-12 — 2026-10-14</text>
 </g>
 </g>
 </svg>
