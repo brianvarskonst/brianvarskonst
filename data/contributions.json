@@ -2,46 +2,11 @@
   "version": 1,
   "username": "brianvarskonst",
   "range": {
-    "start": "2025-10-26",
-    "end": "2026-10-31"
+    "start": "2025-11-02",
+    "end": "2026-11-01"
   },
   "source": "https://github.com/users/brianvarskonst/contributions",
   "days": [
-    {
-      "date": "2025-10-26",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-10-27",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-10-28",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-10-29",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-10-30",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-10-31",
-      "count": 0,
-      "level": 0
-    },
-    {
-      "date": "2025-11-01",
-      "count": 0,
-      "level": 0
-    },
     {
       "date": "2025-11-02",
       "count": 0,
@@ -1859,8 +1824,13 @@
     },
     {
       "date": "2026-10-31",
-      "count": 0,
-      "level": 0
+      "count": 29,
+      "level": 1
+    },
+    {
+      "date": "2026-11-01",
+      "count": 9,
+      "level": 1
     }
   ]
 }
