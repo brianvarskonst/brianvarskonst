@@ -21,7 +21,7 @@ I work at the intersection of architecture, delivery, DevOps and engineering lea
 
 <!-- contribution-summary:start -->
 **6,329 contributions** · **178 active days**<br />
-Visible calendar: 2025-11-09 — 2026-11-10.<br />
+Visible calendar: 2025-11-09 — 2026-11-11.<br />
 Peak: 2026-10-30 · 328 contributions.
 <!-- contribution-summary:end -->
 
