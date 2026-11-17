@@ -3,7 +3,7 @@
   "username": "brianvarskonst",
   "range": {
     "start": "2025-11-16",
-    "end": "2026-11-16"
+    "end": "2026-11-17"
   },
   "source": "https://github.com/users/brianvarskonst/contributions",
   "days": [
@@ -1030,7 +1030,7 @@
     {
       "date": "2026-06-08",
       "count": 145,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-06-09",
@@ -1600,7 +1600,7 @@
     {
       "date": "2026-09-30",
       "count": 68,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-10-01",
@@ -1650,7 +1650,7 @@
     {
       "date": "2026-10-10",
       "count": 70,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-10-11",
@@ -1675,12 +1675,12 @@
     {
       "date": "2026-10-15",
       "count": 73,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-10-16",
       "count": 68,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-10-17",
@@ -1735,7 +1735,7 @@
     {
       "date": "2026-10-27",
       "count": 137,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-10-28",
@@ -1765,12 +1765,12 @@
     {
       "date": "2026-11-02",
       "count": 218,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-11-03",
       "count": 68,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-11-04",
@@ -1785,7 +1785,7 @@
     {
       "date": "2026-11-06",
       "count": 215,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-11-07",
@@ -1795,12 +1795,12 @@
     {
       "date": "2026-11-08",
       "count": 135,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-11-09",
       "count": 218,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-11-10",
@@ -1829,13 +1829,18 @@
     },
     {
       "date": "2026-11-15",
-      "count": 102,
+      "count": 110,
       "level": 2
     },
     {
       "date": "2026-11-16",
-      "count": 21,
-      "level": 1
+      "count": 295,
+      "level": 4
+    },
+    {
+      "date": "2026-11-17",
+      "count": 0,
+      "level": 0
     }
   ]
 }
