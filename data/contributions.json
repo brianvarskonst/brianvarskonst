@@ -3,7 +3,7 @@
   "username": "brianvarskonst",
   "range": {
     "start": "2025-11-16",
-    "end": "2026-11-17"
+    "end": "2026-11-18"
   },
   "source": "https://github.com/users/brianvarskonst/contributions",
   "days": [
@@ -1839,6 +1839,11 @@
     },
     {
       "date": "2026-11-17",
+      "count": 0,
+      "level": 0
+    },
+    {
+      "date": "2026-11-18",
       "count": 0,
       "level": 0
     }
