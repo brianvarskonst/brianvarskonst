@@ -20,9 +20,9 @@ I work at the intersection of architecture, delivery, DevOps and engineering lea
 </picture>
 
 <!-- contribution-summary:start -->
-**7,334 contributions** · **186 active days**<br />
-Visible calendar: 2025-11-23 — 2026-11-23.<br />
-Peak: 2026-10-30 · 328 contributions.
+**7,686 contributions** · **186 active days**<br />
+Visible calendar: 2025-11-23 — 2026-11-24.<br />
+Peak: 2026-11-23 · 439 contributions.
 <!-- contribution-summary:end -->
 
 <sub>A view of my [GitHub contribution activity](https://github.com/brianvarskonst?tab=overview). Each tile is one day; building height reflects activity.</sub>
